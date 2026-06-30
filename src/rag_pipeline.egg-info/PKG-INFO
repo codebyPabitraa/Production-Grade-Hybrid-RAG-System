@@ -1,0 +1,206 @@
+Metadata-Version: 2.4
+Name: rag-pipeline
+Version: 0.1.0
+Summary: Production RAG pipeline with evaluation layer
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic>=2.7
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: tqdm>=4.66
+Requires-Dist: beautifulsoup4>=4.12
+Requires-Dist: pypdf>=5.0
+Requires-Dist: python-docx>=1.1
+Requires-Dist: openpyxl>=3.1
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+Requires-Dist: ruff>=0.5; extra == "dev"
+Provides-Extra: openai
+Requires-Dist: openai>=1.40; extra == "openai"
+Provides-Extra: groq
+Requires-Dist: groq>=0.11; extra == "groq"
+
+# Production RAG Pipeline + Evaluation Layer
+
+## Project Goal
+
+Build a production-oriented retrieval-augmented generation (RAG) system that can answer questions over a complex domain and prove, with metrics, that the retrieval quality improves over a naive baseline.
+
+This project is not just a chatbot. It is an engineering system with:
+
+- document ingestion
+- intelligent chunking
+- hybrid retrieval
+- reranking
+- LLM answer generation
+- evaluation and benchmarking
+
+The main success criterion is measurable improvement in retrieval quality and answer quality, especially on metrics like `context_precision`, `context_recall`, `faithfulness`, and `answer_relevancy`.
+
+## High-Level Idea
+
+We will build two versions of the pipeline:
+
+1. Baseline RAG
+   - naive chunking
+   - single retriever
+   - direct top-k context to the LLM
+
+2. Production RAG
+   - structure-aware chunking
+   - dense retrieval
+   - sparse retrieval with BM25
+   - RRF fusion
+   - cross-encoder reranking
+   - RAGAS evaluation
+
+The project will compare both versions and document the improvement.
+
+## Proposed Pipeline
+
+1. Ingest source documents
+2. Clean and normalize text
+3. Chunk documents intelligently
+4. Create dense embeddings
+5. Build a vector index
+6. Build a BM25 sparse index
+7. Run dense and sparse retrieval in parallel
+8. Fuse candidate results with RRF
+9. Rerank fused results with a cross-encoder
+10. Feed top context into the LLM
+11. Evaluate outputs with RAGAS
+12. Record results and compare against baseline
+
+## System Design
+
+### 1. Document Layer
+
+Responsible for:
+
+- loading raw documents
+- extracting text
+- preserving metadata
+- preparing chunks for retrieval
+
+### 2. Retrieval Layer
+
+Responsible for:
+
+- semantic search using embeddings
+- lexical search using BM25
+- merging results from both retrieval strategies
+
+### 3. Ranking Layer
+
+Responsible for:
+
+- reranking retrieved passages
+- selecting the most relevant context
+
+### 4. Generation Layer
+
+Responsible for:
+
+- prompting the LLM with selected context
+- producing final answers
+- optionally attaching citations or source references
+
+### 5. Evaluation Layer
+
+Responsible for:
+
+- running test queries
+- measuring answer quality
+- comparing baseline vs improved system
+- logging failures and edge cases
+
+## What Makes This a Good Project
+
+- It solves a real problem: retrieval quality.
+- It is measurable.
+- It combines multiple techniques rather than relying on a single vector search.
+- It looks and feels like a production system.
+- It produces engineering evidence, not just demos.
+
+## Implementation Phases
+
+### Phase 1: Project Setup
+
+- Create repository structure
+- Decide document format and corpus
+- Define configuration and environment setup
+- Add logging and error handling
+
+### Phase 2: Baseline RAG
+
+- Implement simple chunking
+- Add a basic vector store
+- Connect a simple prompt-and-answer flow
+- Establish baseline metrics
+
+### Phase 3: Hybrid Retrieval
+
+- Add BM25 indexing
+- Add dense retrieval
+- Implement result fusion with RRF
+
+### Phase 4: Reranking
+
+- Add a cross-encoder reranker
+- Improve precision of selected context
+
+### Phase 5: Evaluation
+
+- Set up test dataset
+- Run RAGAS metrics
+- Compare before and after
+- Save evaluation reports
+
+### Phase 6: Production Polish
+
+- Add better error handling
+- Add observability/logging
+- Document limitations and known issues
+- Make the system reproducible
+
+## Expected Metrics
+
+We will track:
+
+- `context_precision`
+- `context_recall`
+- `faithfulness`
+- `answer_relevancy`
+
+We will also track:
+
+- retrieval latency
+- reranking latency
+- total answer latency
+- failure cases
+
+## Difficulties / Known Issues
+
+This section will be updated whenever we hit a problem.
+
+### Current Known Difficulties
+
+- None yet. This project is just starting.
+
+### Future Issues to Log
+
+- chunking strategy produces noisy context
+- retrieval recall is too low
+- reranker is too slow
+- context window gets overloaded
+- metrics do not improve enough
+- evaluation data is too small or biased
+
+## Development Notes
+
+- We will keep the implementation Windows-friendly.
+- PowerShell commands will be used for setup and execution.
+- We will write the project step by step and keep the design document updated.
+
+## Next Step
+
+Create the actual project structure, define dependencies, and start implementing the baseline RAG pipeline.

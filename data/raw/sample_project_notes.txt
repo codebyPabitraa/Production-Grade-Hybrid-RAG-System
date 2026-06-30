@@ -1,0 +1,7 @@
+Production RAG systems should use hybrid retrieval.
+Dense retrieval captures semantic similarity.
+BM25 captures lexical match and exact keywords.
+RRF fusion combines both candidate sets.
+Cross-encoder reranking improves precision before generation.
+Evaluation with RAGAS helps prove the system is better.
+

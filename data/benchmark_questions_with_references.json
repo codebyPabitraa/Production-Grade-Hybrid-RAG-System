@@ -1,0 +1,36 @@
+{
+  "questions": [
+    {
+      "question": "What is this project about?",
+      "reference_answer": "It is a production-style RAG pipeline that supports many file types, retrieval, generation, evaluation, and benchmarking."
+    },
+    {
+      "question": "What does the pipeline do?",
+      "reference_answer": "It ingests files, normalizes content, chunks documents, retrieves context, generates answers, evaluates them, and saves reports."
+    },
+    {
+      "question": "Which metrics are tracked?",
+      "reference_answer": "The project tracks context precision, context recall, faithfulness, answer relevancy, and reference similarity in benchmark mode."
+    },
+    {
+      "question": "How does the system handle different file types?",
+      "reference_answer": "It uses format-aware ingestion and normalization so PDFs, DOCX, HTML, CSV, XLSX, markdown, and code-like files can all flow into the same RAG pipeline."
+    },
+    {
+      "question": "What makes the retrieval layer production-oriented?",
+      "reference_answer": "It combines BM25, dense retrieval, and reciprocal rank fusion, with a retriever orchestrator and prompt-based generation."
+    },
+    {
+      "question": "Why do we save benchmark reports?",
+      "reference_answer": "We save benchmark reports so we can compare runs over time, inspect per-question results, and track improvement."
+    },
+    {
+      "question": "What are the main pieces of the system?",
+      "reference_answer": "The main pieces are ingestion, chunking, retrieval orchestration, generation, evaluation, reporting, and benchmark comparison."
+    },
+    {
+      "question": "How is the pipeline made measurable?",
+      "reference_answer": "The pipeline is measurable because it saves evaluation reports, benchmark summaries, and comparison reports for each run."
+    }
+  ]
+}

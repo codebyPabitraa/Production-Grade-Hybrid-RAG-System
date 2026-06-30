@@ -1,0 +1,4 @@
+The benchmark workflow compares multiple questions across saved reports.
+It records per-question metrics, reference similarity, and aggregate averages.
+It also writes JSON and Markdown summaries so results are easier to inspect.
+

@@ -1,0 +1,118 @@
+{
+  "questions_file": "data\\benchmark_questions_with_references.json",
+  "run_count": 8,
+  "metrics": {
+    "question_count": 8,
+    "avg_context_precision": 0.21768426401992497,
+    "avg_answer_relevancy": 0.05835629092095617,
+    "avg_faithfulness": 0.2848471670927359,
+    "avg_context_recall": 0.024666255510556748,
+    "avg_reference_similarity": 0.0
+  },
+  "results": [
+    {
+      "question": "What is this project about?",
+      "documents": 3,
+      "chunks": 3,
+      "retrieval_results": 2,
+      "answer_length": 422,
+      "context_precision": 0.37103174603174605,
+      "answer_relevancy": 0.02702702702702703,
+      "faithfulness": 0.3968253968253968,
+      "context_recall": 0.018867924528301886,
+      "report_path": "reports\\20260629T061841Z_What_is_this_project_about.json",
+      "reference_similarity": 0.0
+    },
+    {
+      "question": "What does the pipeline do?",
+      "documents": 3,
+      "chunks": 3,
+      "retrieval_results": 3,
+      "answer_length": 422,
+      "context_precision": 0.22095988819747078,
+      "answer_relevancy": 0.05405405405405406,
+      "faithfulness": 0.21739130434782608,
+      "context_recall": 0.01282051282051282,
+      "report_path": "reports\\20260629T061842Z_What_does_the_pipeline_do.json",
+      "reference_similarity": 0.0
+    },
+    {
+      "question": "Which metrics are tracked?",
+      "documents": 3,
+      "chunks": 3,
+      "retrieval_results": 1,
+      "answer_length": 189,
+      "context_precision": 0.2894736842105263,
+      "answer_relevancy": 0.043478260869565216,
+      "faithfulness": 0.2894736842105263,
+      "context_recall": 0.03571428571428571,
+      "report_path": "reports\\20260629T061843Z_Which_metrics_are_tracked.json",
+      "reference_similarity": 0.0
+    },
+    {
+      "question": "How does the system handle different file types?",
+      "documents": 3,
+      "chunks": 3,
+      "retrieval_results": 3,
+      "answer_length": 559,
+      "context_precision": 0.05029127251349474,
+      "answer_relevancy": 0.10869565217391304,
+      "faithfulness": 0.09009009009009009,
+      "context_recall": 0.025,
+      "report_path": "reports\\20260629T061844Z_How_does_the_system_handle_different_fil.json",
+      "reference_similarity": 0.0
+    },
+    {
+      "question": "What makes the retrieval layer production-oriented?",
+      "documents": 3,
+      "chunks": 3,
+      "retrieval_results": 3,
+      "answer_length": 1195,
+      "context_precision": 0.18123432476560788,
+      "answer_relevancy": 0.04938271604938271,
+      "faithfulness": 0.3220338983050847,
+      "context_recall": 0.02531645569620253,
+      "report_path": "reports\\20260629T061845Z_What_makes_the_retrieval_layer_productio.json",
+      "reference_similarity": 0.0
+    },
+    {
+      "question": "Why do we save benchmark reports?",
+      "documents": 3,
+      "chunks": 3,
+      "retrieval_results": 2,
+      "answer_length": 283,
+      "context_precision": 0.3208333333333333,
+      "answer_relevancy": 0.0967741935483871,
+      "faithfulness": 0.3888888888888889,
+      "context_recall": 0.04081632653061224,
+      "report_path": "reports\\20260629T061846Z_Why_do_we_save_benchmark_reports.json",
+      "reference_similarity": 0.0
+    },
+    {
+      "question": "What are the main pieces of the system?",
+      "documents": 3,
+      "chunks": 3,
+      "retrieval_results": 3,
+      "answer_length": 1310,
+      "context_precision": 0.1651732377538829,
+      "answer_relevancy": 0.03571428571428571,
+      "faithfulness": 0.3333333333333333,
+      "context_recall": 0.01282051282051282,
+      "report_path": "reports\\20260629T061847Z_What_are_the_main_pieces_of_the_system.json",
+      "reference_similarity": 0.0
+    },
+    {
+      "question": "How is the pipeline made measurable?",
+      "documents": 3,
+      "chunks": 3,
+      "retrieval_results": 3,
+      "answer_length": 763,
+      "context_precision": 0.1424766253533377,
+      "answer_relevancy": 0.05172413793103448,
+      "faithfulness": 0.24074074074074073,
+      "context_recall": 0.025974025974025976,
+      "report_path": "reports\\20260629T061848Z_How_is_the_pipeline_made_measurable.json",
+      "reference_similarity": 0.0
+    }
+  ]
+}

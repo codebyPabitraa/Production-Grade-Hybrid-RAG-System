@@ -1,0 +1,4 @@
+This project is a production-style retrieval augmented generation pipeline.
+It supports universal file ingestion, format-aware chunking, hybrid retrieval, Groq generation, and evaluation reports.
+The pipeline is designed to be measurable and benchmarkable.
+

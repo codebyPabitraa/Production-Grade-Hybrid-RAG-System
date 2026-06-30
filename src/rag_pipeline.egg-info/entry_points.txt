@@ -1,0 +1,2 @@
+[console_scripts]
+rag-pipeline = rag_pipeline.cli:main
