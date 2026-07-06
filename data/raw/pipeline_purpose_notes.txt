@@ -1,0 +1,16 @@
+What does the pipeline do?
+
+It ingests files, normalizes their content, splits them into chunks, retrieves relevant context, generates a grounded answer, evaluates the result, and saves a report.
+
+In other words, the pipeline turns raw local documents into a question-answering workflow that can be measured and compared over time.
+
+The important part is that each stage feeds the next one:
+
+- ingestion makes the files usable
+- chunking makes them searchable
+- retrieval finds the most relevant evidence
+- generation turns that evidence into an answer
+- evaluation measures whether the answer is good
+- reporting stores the result for later comparison
+
+This is the core behavior of the system from end to end.

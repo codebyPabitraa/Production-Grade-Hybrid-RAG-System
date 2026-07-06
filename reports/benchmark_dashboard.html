@@ -1,0 +1,652 @@
+<!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>RAG Benchmark Dashboard</title>
+      <style>
+        :root {
+          color-scheme: dark;
+          --bg: #0e1117;
+          --panel: #151a23;
+          --panel-2: #10151d;
+          --text: #e6edf3;
+          --muted: #9aa4b2;
+          --accent: #37d67a;
+          --border: #243041;
+        }
+        body {
+          margin: 0;
+          font-family: Segoe UI, Arial, sans-serif;
+          background: radial-gradient(circle at top, #172033, var(--bg) 55%);
+          color: var(--text);
+        }
+        .wrap {
+          max-width: 1180px;
+          margin: 0 auto;
+          padding: 32px 20px 48px;
+        }
+        .hero {
+          display: grid;
+          grid-template-columns: 1.5fr 1fr;
+          gap: 18px;
+          align-items: stretch;
+        }
+        .panel {
+          background: linear-gradient(180deg, rgba(21,26,35,.95), rgba(16,21,29,.95));
+          border: 1px solid var(--border);
+          border-radius: 18px;
+          padding: 22px;
+          box-shadow: 0 18px 40px rgba(0,0,0,.25);
+        }
+        h1 {
+          margin: 0 0 12px;
+          font-size: 32px;
+        }
+        h2 {
+          margin: 0 0 14px;
+          font-size: 18px;
+        }
+        p {
+          color: var(--muted);
+          line-height: 1.5;
+        }
+        .cards {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
+        .card {
+          background: rgba(255,255,255,.03);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 14px;
+        }
+        .label {
+          color: var(--muted);
+          font-size: 13px;
+          margin-bottom: 4px;
+        }
+        .value {
+          font-size: 28px;
+          font-weight: 700;
+        }
+        .bar {
+          height: 8px;
+          background: rgba(255,255,255,.08);
+          border-radius: 999px;
+          overflow: hidden;
+          margin-top: 10px;
+        }
+        .bar span {
+          display: block;
+          height: 100%;
+          border-radius: inherit;
+          background: linear-gradient(90deg, var(--accent), #7af0a8);
+        }
+        .trend {
+          margin-top: 8px;
+          font-size: 12px;
+          color: var(--muted);
+        }
+        .trend.up {
+          color: #8cf1b1;
+        }
+        .trend.down {
+          color: #ff8a8a;
+        }
+        .detail-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+        }
+        .detail-box {
+          background: rgba(255,255,255,.03);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 14px;
+        }
+        .detail-title {
+          color: var(--muted);
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: .04em;
+          margin-bottom: 8px;
+        }
+        .detail-answer, .detail-context {
+          color: var(--text);
+          line-height: 1.55;
+          white-space: pre-wrap;
+          word-break: break-word;
+          font-size: 14px;
+        }
+        .detail-actions {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 10px;
+          flex-wrap: wrap;
+        }
+        .button {
+          background: rgba(255,255,255,.05);
+          border: 1px solid var(--border);
+          color: var(--text);
+          border-radius: 999px;
+          padding: 8px 12px;
+          font-size: 13px;
+          cursor: pointer;
+        }
+        .button:hover {
+          border-color: rgba(55,214,122,.45);
+        }
+        .button.primary {
+          background: rgba(55,214,122,.12);
+          border-color: rgba(55,214,122,.35);
+        }
+        .detail-meta {
+          color: var(--muted);
+          font-size: 13px;
+          margin-bottom: 10px;
+          white-space: pre-line;
+          word-break: break-word;
+        }
+        .metric-list {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+          margin-bottom: 10px;
+        }
+        .metric-pill {
+          background: rgba(255,255,255,.03);
+          border: 1px solid var(--border);
+          border-radius: 12px;
+          padding: 10px 12px;
+        }
+        .metric-name {
+          color: var(--muted);
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: .04em;
+        }
+        .metric-value {
+          font-size: 22px;
+          font-weight: 700;
+          margin-top: 4px;
+        }
+        .toolbar {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+          flex-wrap: wrap;
+          margin-top: 12px;
+        }
+        .search {
+          flex: 1 1 260px;
+          min-width: 220px;
+          background: rgba(255,255,255,.04);
+          border: 1px solid var(--border);
+          border-radius: 999px;
+          padding: 10px 14px;
+          color: var(--text);
+          outline: none;
+        }
+        .search::placeholder {
+          color: var(--muted);
+        }
+        .toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: var(--muted);
+          font-size: 13px;
+          user-select: none;
+        }
+        .toggle input {
+          accent-color: var(--accent);
+        }
+        .run-row:hover {
+          background: rgba(255,255,255,.03);
+          cursor: pointer;
+        }
+        .run-row.active {
+          background: rgba(55, 214, 122, 0.08);
+        }
+        .run-row.hidden {
+          display: none;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 18px;
+          overflow: hidden;
+        }
+        th, td {
+          text-align: left;
+          padding: 12px 10px;
+          border-bottom: 1px solid rgba(255,255,255,.07);
+        }
+        th {
+          color: var(--muted);
+          font-weight: 600;
+          font-size: 13px;
+          text-transform: uppercase;
+          letter-spacing: .04em;
+        }
+        .tag {
+          display: inline-block;
+          padding: 4px 10px;
+          border: 1px solid rgba(55,214,122,.35);
+          color: #8cf1b1;
+          border-radius: 999px;
+          font-size: 12px;
+          margin-bottom: 14px;
+        }
+        .small {
+          font-size: 13px;
+          color: var(--muted);
+        }
+        .legend {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          margin-top: 12px;
+          font-size: 12px;
+          color: var(--muted);
+        }
+        .legend span {
+          padding: 4px 8px;
+          border: 1px solid var(--border);
+          border-radius: 999px;
+        }
+        .report-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+        }
+        a {
+          color: #8dc7ff;
+          text-decoration: none;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+        .detail-header {
+          display: flex;
+          justify-content: space-between;
+          gap: 12px;
+          align-items: baseline;
+        }
+        @media (max-width: 900px) {
+          .hero { grid-template-columns: 1fr; }
+          .detail-grid { grid-template-columns: 1fr; }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="wrap">
+        <div class="tag">Benchmark Dashboard</div>
+        <div class="hero">
+          <div class="panel">
+            <h1>RAG Benchmark Overview</h1>
+            <p>This dashboard summarizes the latest benchmark run and the recent benchmark history for the local RAG pipeline.</p>
+            <div class="small">Latest question: What is this project about?</div>
+            <div class="small">Latest run is saved locally and can be inspected in the detail panel.</div>
+            <div class="legend">
+              <span>Green means improvement</span>
+              <span>Red means regression</span>
+              <span>Bars show the current score out of 1.0</span>
+            </div>
+          </div>
+          <div class="panel">
+            <h2>Latest Metrics</h2>
+            <div class="cards">
+              
+            <div class="card">
+              <div class="label">Context Precision</div>
+              <div class="value">0.3160</div>
+              <div class="bar"><span style="width:31.6%"></span></div>
+              <div class="trend up">+0.0691</div>
+            </div>
+            
+            <div class="card">
+              <div class="label">Answer Relevancy</div>
+              <div class="value">0.1981</div>
+              <div class="bar"><span style="width:19.8%"></span></div>
+              <div class="trend down">-0.1641</div>
+            </div>
+            
+            <div class="card">
+              <div class="label">Faithfulness</div>
+              <div class="value">0.5000</div>
+              <div class="bar"><span style="width:50.0%"></span></div>
+              <div class="trend up">+0.2143</div>
+            </div>
+            
+            <div class="card">
+              <div class="label">Context Recall</div>
+              <div class="value">0.0312</div>
+              <div class="bar"><span style="width:3.1%"></span></div>
+              <div class="trend down">-0.0135</div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        <div class="panel" style="margin-top:18px;">
+          <h2>Recent Runs</h2>
+          <div class="toolbar">
+            <input id="run-search" class="search" type="search" placeholder="Filter runs by question..." />
+            <label class="toggle">
+              <input id="exact-toggle" type="checkbox" />
+              Match exact question text
+            </label>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Context P</th>
+                <th>Answer R</th>
+                <th>Faith</th>
+                <th>Recall</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            <tr class="run-row" data-index="0">
+              <td>
+                <div>What is this project about?</div>
+                <div class="small">
+                  <a href="report-pages/20260702T161524Z_What_is_this_project_about.html" target="_blank" rel="noopener">Open report</a>
+                  <span aria-hidden="true"> · </span>
+                  <a href="report-pages/20260702T161524Z_What_is_this_project_about.html" download>Download</a>
+                </div>
+              </td>
+              <td>0.316</td>
+              <td>0.198</td>
+              <td>0.500</td>
+              <td>0.031</td>
+            </tr>
+            
+            <tr class="run-row" data-index="1">
+              <td>
+                <div>How is the pipeline made measurable?</div>
+                <div class="small">
+                  <a href="report-pages/20260702T161408Z_How_is_the_pipeline_made_measurable.html" target="_blank" rel="noopener">Open report</a>
+                  <span aria-hidden="true"> · </span>
+                  <a href="report-pages/20260702T161408Z_How_is_the_pipeline_made_measurable.html" download>Download</a>
+                </div>
+              </td>
+              <td>0.247</td>
+              <td>0.362</td>
+              <td>0.286</td>
+              <td>0.045</td>
+            </tr>
+            
+            <tr class="run-row" data-index="2">
+              <td>
+                <div>What are the main pieces of the system?</div>
+                <div class="small">
+                  <a href="report-pages/20260702T161407Z_What_are_the_main_pieces_of_the_system.html" target="_blank" rel="noopener">Open report</a>
+                  <span aria-hidden="true"> · </span>
+                  <a href="report-pages/20260702T161407Z_What_are_the_main_pieces_of_the_system.html" download>Download</a>
+                </div>
+              </td>
+              <td>0.148</td>
+              <td>0.376</td>
+              <td>0.203</td>
+              <td>0.062</td>
+            </tr>
+            
+            <tr class="run-row" data-index="3">
+              <td>
+                <div>Why do we save benchmark reports?</div>
+                <div class="small">
+                  <a href="report-pages/20260702T161406Z_Why_do_we_save_benchmark_reports.html" target="_blank" rel="noopener">Open report</a>
+                  <span aria-hidden="true"> · </span>
+                  <a href="report-pages/20260702T161406Z_Why_do_we_save_benchmark_reports.html" download>Download</a>
+                </div>
+              </td>
+              <td>0.142</td>
+              <td>0.347</td>
+              <td>0.208</td>
+              <td>0.095</td>
+            </tr>
+            
+            <tr class="run-row" data-index="4">
+              <td>
+                <div>What makes the retrieval layer production-oriented?</div>
+                <div class="small">
+                  <a href="report-pages/20260702T161405Z_What_makes_the_retrieval_layer_productio.html" target="_blank" rel="noopener">Open report</a>
+                  <span aria-hidden="true"> · </span>
+                  <a href="report-pages/20260702T161405Z_What_makes_the_retrieval_layer_productio.html" download>Download</a>
+                </div>
+              </td>
+              <td>0.175</td>
+              <td>0.327</td>
+              <td>0.290</td>
+              <td>0.094</td>
+            </tr>
+            
+            <tr class="run-row" data-index="5">
+              <td>
+                <div>How does the system handle different file types?</div>
+                <div class="small">
+                  <a href="report-pages/20260702T161404Z_How_does_the_system_handle_different_fil.html" target="_blank" rel="noopener">Open report</a>
+                  <span aria-hidden="true"> · </span>
+                  <a href="report-pages/20260702T161404Z_How_does_the_system_handle_different_fil.html" download>Download</a>
+                </div>
+              </td>
+              <td>0.182</td>
+              <td>0.386</td>
+              <td>0.338</td>
+              <td>0.068</td>
+            </tr>
+            
+            <tr class="run-row" data-index="6">
+              <td>
+                <div>Which metrics are tracked?</div>
+                <div class="small">
+                  <a href="report-pages/20260702T161404Z_Which_metrics_are_tracked.html" target="_blank" rel="noopener">Open report</a>
+                  <span aria-hidden="true"> · </span>
+                  <a href="report-pages/20260702T161404Z_Which_metrics_are_tracked.html" download>Download</a>
+                </div>
+              </td>
+              <td>0.222</td>
+              <td>0.262</td>
+              <td>0.237</td>
+              <td>0.027</td>
+            </tr>
+            
+            <tr class="run-row" data-index="7">
+              <td>
+                <div>What does the pipeline do?</div>
+                <div class="small">
+                  <a href="report-pages/20260702T161403Z_What_does_the_pipeline_do.html" target="_blank" rel="noopener">Open report</a>
+                  <span aria-hidden="true"> · </span>
+                  <a href="report-pages/20260702T161403Z_What_does_the_pipeline_do.html" download>Download</a>
+                </div>
+              </td>
+              <td>0.162</td>
+              <td>0.187</td>
+              <td>0.325</td>
+              <td>0.086</td>
+            </tr>
+            
+            <tr class="run-row" data-index="8">
+              <td>
+                <div>What is this project about?</div>
+                <div class="small">
+                  <a href="report-pages/20260702T161402Z_What_is_this_project_about.html" target="_blank" rel="noopener">Open report</a>
+                  <span aria-hidden="true"> · </span>
+                  <a href="report-pages/20260702T161402Z_What_is_this_project_about.html" download>Download</a>
+                </div>
+              </td>
+              <td>0.329</td>
+              <td>0.210</td>
+              <td>0.541</td>
+              <td>0.031</td>
+            </tr>
+            
+            <tr class="run-row" data-index="9">
+              <td>
+                <div>What is this project about?</div>
+                <div class="small">
+                  <a href="report-pages/20260702T161359Z_What_is_this_project_about.html" target="_blank" rel="noopener">Open report</a>
+                  <span aria-hidden="true"> · </span>
+                  <a href="report-pages/20260702T161359Z_What_is_this_project_about.html" download>Download</a>
+                </div>
+              </td>
+              <td>0.329</td>
+              <td>0.209</td>
+              <td>0.568</td>
+              <td>0.031</td>
+            </tr>
+            
+            </tbody>
+          </table>
+        </div>
+        <div class="panel" style="margin-top:18px;">
+          <div class="detail-header">
+            <h2>Selected Run</h2>
+            <label class="toggle">
+              <input id="context-toggle" type="checkbox" checked />
+              Show retrieved context
+            </label>
+          </div>
+          <div id="run-detail" class="detail-grid">
+            <div class="detail-box">
+              <div class="detail-title">Question</div>
+              <div id="detail-question" class="detail-answer">What is this project about?</div>
+            </div>
+            <div class="detail-box">
+              <div class="detail-title">Metrics</div>
+              <div class="metric-list" id="detail-metrics"></div>
+              <div class="detail-meta" id="detail-report"></div>
+            </div>
+            <div class="detail-box">
+              <div class="detail-title">Answer</div>
+              <div class="detail-actions">
+                <button id="copy-answer" class="button" type="button">Copy answer</button>
+                <a id="open-report" class="button primary report-link" href="#" target="_blank" rel="noopener">Open full report</a>
+                <a id="download-report" class="button report-link" href="#" download>Download HTML</a>
+              </div>
+              <div id="detail-answer" class="detail-answer">This project is about turning a simple RAG demo into a measurable workflow for a production-style RAG system. It involves creating a production-style RAG system to answer questions from local files and includes features like reporting, repeatability, and comparison</div>
+            </div>
+            <div class="detail-box" id="context-box">
+              <div class="detail-title">Retrieved Context</div>
+              <div id="detail-context" class="detail-context">[Context 1]
+This end-to-end flow is what turns a simple RAG demo into a measurable workflow.
+
+[Context 2]
+This project is a production-style RAG system meant to answer questions from local files.
+
+[Context 3]
+A basic retrieval demo answers questions, but a production workflow needs reporting, repeatability, and comparison. That is why this project saves benchmark summaries and comparison reports.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        const runs = [{"question": "What is this project about?", "answer": "This project is about turning a simple RAG demo into a measurable workflow for a production-style RAG system. It involves creating a production-style RAG system to answer questions from local files and includes features like reporting, repeatability, and comparison", "report_href": "report-pages/20260702T161524Z_What_is_this_project_about.html", "timestamp_utc": "2026-07-02T16:15:24.807833+00:00", "context_precision": 0.3159917862419553, "answer_relevancy": 0.19807692307692307, "faithfulness": 0.5, "context_recall": 0.03125, "reference_similarity": 0.0, "retrieved_context": "[Context 1]\nThis end-to-end flow is what turns a simple RAG demo into a measurable workflow.\n\n[Context 2]\nThis project is a production-style RAG system meant to answer questions from local files.\n\n[Context 3]\nA basic retrieval demo answers questions, but a production workflow needs reporting, repeatability, and comparison. That is why this project saves benchmark summaries and comparison reports."}, {"question": "How is the pipeline made measurable?", "answer": "The pipeline is made measurable by saving per-question reports, benchmark summaries, and comparison reports. This is achieved by saving artifacts that allow for comparison of runs over time and evaluation of whether a change improved answer quality, as mentioned in .", "report_href": "report-pages/20260702T161408Z_How_is_the_pipeline_made_measurable.html", "timestamp_utc": "2026-07-02T16:14:08.493183+00:00", "context_precision": 0.24693877551020407, "answer_relevancy": 0.36220735785953173, "faithfulness": 0.2857142857142857, "context_recall": 0.04477611940298507, "reference_similarity": 0.0, "retrieved_context": "[Context 1]\nThis project is a production-style retrieval augmented generation pipeline.\nIt supports universal file ingestion, format-aware chunking, hybrid retrieval, Groq generation, and evaluation reports.\nThe pipeline is designed to be measurable and benchmarkable.\n\n[Context 2]\nThe system is made measurable by saving per-question reports, benchmark summaries, and comparison reports.\nThose saved artifacts let us compare runs over time and see whether a change improved answer quality.\n\n[Context 3]\nThe retrieval layer is hybrid. BM25 helps when the question contains exact terms. Dense retrieval helps when the wording is different but the meaning is similar. Reciprocal rank fusion combines both sets, and the orchestrator keeps the interface consistent for generation and evaluation."}, {"question": "What are the main pieces of the system?", "answer": "The main pieces of the system are ingestion, chunking, retrieval, generation, evaluation, and reporting. These components work together to process and generate information, with chunking turning large documents into smaller pieces for retrieval, and evaluation assessing the quality of the retrieved and generated content. The system's architecture is described in , with the end-to-end flow outlined in and evaluation workflow details provided in .", "report_href": "report-pages/20260702T161407Z_What_are_the_main_pieces_of_the_system.html", "timestamp_utc": "2026-07-02T16:14:07.638998+00:00", "context_precision": 0.14793317626900834, "answer_relevancy": 0.37571428571428567, "faithfulness": 0.2028985507246377, "context_recall": 0.0625, "reference_similarity": 0.0, "retrieved_context": "[Context 1]\nThe main pieces of the system are ingestion, chunking, retrieval, generation, evaluation, and reporting.\n\n[Context 2]\nThe next step is chunking. Chunking turns large documents into smaller pieces so retrieval can rank the most relevant parts of the source material.\n\n[Context 3]\nWhen scores are low, the first thing to inspect is the retrieved context. If the wrong chunks are being selected, the generation layer cannot recover. If the chunks are good but the answer is weak, then the prompt or model settings need adjustment."}, {"question": "Why do we save benchmark reports?", "answer": "We save benchmark reports to enable reporting, repeatability, and comparison in a production workflow. This allows us to track changes and improvements over time, as mentioned in .", "report_href": "report-pages/20260702T161406Z_Why_do_we_save_benchmark_reports.html", "timestamp_utc": "2026-07-02T16:14:06.676586+00:00", "context_precision": 0.1419753086419753, "answer_relevancy": 0.34736842105263155, "faithfulness": 0.20833333333333334, "context_recall": 0.09523809523809523, "reference_similarity": 0.0, "retrieved_context": "[Context 1]\nA basic retrieval demo answers questions, but a production workflow needs reporting, repeatability, and comparison. That is why this project saves benchmark summaries and comparison reports.\n\n[Context 2]\nWhat does the pipeline do?\n\n[Context 3]\nThe system is made measurable by saving per-question reports, benchmark summaries, and comparison reports.\nThose saved artifacts let us compare runs over time and see whether a change improved answer quality."}, {"question": "What makes the retrieval layer production-oriented?", "answer": "The retrieval layer is production-oriented because it retrieves relevant evidence from the available chunks without inventing details, as stated in . This approach ensures that the generated answer stays close to the evidence and summarizes only what the retrieved context supports. The production-oriented nature of the retrieval layer is also implied in , which mentions the architecture's intention to keep the evaluation loop visible.", "report_href": "report-pages/20260702T161405Z_What_makes_the_retrieval_layer_productio.html", "timestamp_utc": "2026-07-02T16:14:05.801932+00:00", "context_precision": 0.17505175983436852, "answer_relevancy": 0.3271692745376955, "faithfulness": 0.2898550724637681, "context_recall": 0.09433962264150944, "reference_similarity": 0.0, "retrieved_context": "[Context 1]\nThe generation layer produces grounded answers from the retrieved chunks. In production-style use, the answer should stay close to the evidence, avoid inventing details, and summarize only what the retrieved context supports.\n\n[Context 2]\n- ingestion makes the files usable\n- chunking makes them searchable\n- retrieval finds the most relevant evidence\n- generation turns that evidence into an answer\n- evaluation measures whether the answer is good\n- reporting stores the result for later comparison\n\n[Context 3]\nThis architecture is intended to be production-oriented because it separates responsibilities and keeps the evaluation loop visible."}, {"question": "How does the system handle different file types?", "answer": "The system handles different file types through format-aware ingestion and extraction. This is possible because the system can process various file formats, including PDFs, DOCX files, HTML, CSV, XLSX, markdown, and code-like files, without manual conversion.", "report_href": "report-pages/20260702T161404Z_How_does_the_system_handle_different_fil.html", "timestamp_utc": "2026-07-02T16:14:04.928447+00:00", "context_precision": 0.18205585264408794, "answer_relevancy": 0.38636363636363635, "faithfulness": 0.33766233766233766, "context_recall": 0.0684931506849315, "reference_similarity": 0.0, "retrieved_context": "[Context 1]\nBenchmark questions should resemble the actual questions a developer or user would ask about the system. Examples include how ingestion works, which metrics are tracked, why retrieval uses hybrid ranking, and how the reports are used to track improvement.\n\n[Context 2]\nThe system handles different file types through format-aware ingestion and extraction.\nThat means PDFs, DOCX files, HTML, CSV, XLSX, markdown, and code-like files can all enter the same pipeline without manual conversion.\nMetadata such as file path, kind, title, page count, row count, or sheet count helps preserve source context for debugging and tracing.\n\n[Context 3]\nWhat does the pipeline do?"}, {"question": "Which metrics are tracked?", "answer": "Per-question metrics, reference similarity, and aggregate averages are tracked. These metrics are recorded as part of the benchmark workflow, which compares multiple questions across saved reports.", "report_href": "report-pages/20260702T161404Z_Which_metrics_are_tracked.html", "timestamp_utc": "2026-07-02T16:14:04.030768+00:00", "context_precision": 0.22247823860727087, "answer_relevancy": 0.2619047619047619, "faithfulness": 0.23684210526315788, "context_recall": 0.0273972602739726, "reference_similarity": 0.0, "retrieved_context": "[Context 1]\nBenchmark questions should resemble the actual questions a developer or user would ask about the system. Examples include how ingestion works, which metrics are tracked, why retrieval uses hybrid ranking, and how the reports are used to track improvement.\n\n[Context 2]\nThe benchmark workflow compares multiple questions across saved reports.\nIt records per-question metrics, reference similarity, and aggregate averages.\nIt also writes JSON and Markdown summaries so results are easier to inspect.\n\n[Context 3]\nWhen scores are low, the first thing to inspect is the retrieved context. If the wrong chunks are being selected, the generation layer cannot recover. If the chunks are good but the answer is weak, then the prompt or model settings need adjustment."}, {"question": "What does the pipeline do?", "answer": "The pipeline generates grounded answers from retrieved chunks. It does this by producing answers that stay close to the evidence, avoiding invented details, and summarizing only what the retrieved context supports .", "report_href": "report-pages/20260702T161403Z_What_does_the_pipeline_do.html", "timestamp_utc": "2026-07-02T16:14:03.009482+00:00", "context_precision": 0.161524500907441, "answer_relevancy": 0.18713450292397657, "faithfulness": 0.325, "context_recall": 0.08571428571428572, "reference_similarity": 0.0, "retrieved_context": "[Context 1]\nWhat does the pipeline do?\n\n[Context 2]\nThe generation layer produces grounded answers from the retrieved chunks. In production-style use, the answer should stay close to the evidence, avoid inventing details, and summarize only what the retrieved context supports.\n\n[Context 3]\nThis end-to-end flow is what turns a simple RAG demo into a measurable workflow."}, {"question": "What is this project about?", "answer": "This project is about turning a simple RAG demo into a measurable production-style workflow. It involves creating a production-style RAG system that can answer questions from local files and save benchmark summaries and comparison reports.", "report_href": "report-pages/20260702T161402Z_What_is_this_project_about.html", "timestamp_utc": "2026-07-02T16:14:02.105536+00:00", "context_precision": 0.3287665931344092, "answer_relevancy": 0.20974358974358978, "faithfulness": 0.5405405405405406, "context_recall": 0.03125, "reference_similarity": 0.0, "retrieved_context": "[Context 1]\nThis end-to-end flow is what turns a simple RAG demo into a measurable workflow.\n\n[Context 2]\nThis project is a production-style RAG system meant to answer questions from local files.\n\n[Context 3]\nA basic retrieval demo answers questions, but a production workflow needs reporting, repeatability, and comparison. That is why this project saves benchmark summaries and comparison reports."}, {"question": "What is this project about?", "answer": "This project is about turning a simple RAG demo into a measurable production-style workflow. It involves creating a production pipeline to answer questions from local files and saving benchmark summaries and comparison reports for reporting, repeatability, and comparison.", "report_href": "report-pages/20260702T161359Z_What_is_this_project_about.html", "timestamp_utc": "2026-07-02T16:13:59.442242+00:00", "context_precision": 0.32883141762452106, "answer_relevancy": 0.20888888888888893, "faithfulness": 0.5675675675675675, "context_recall": 0.03125, "reference_similarity": 0.0, "retrieved_context": "[Context 1]\nThis end-to-end flow is what turns a simple RAG demo into a measurable workflow.\n\n[Context 2]\nThis project is a production-style RAG system meant to answer questions from local files.\n\n[Context 3]\nA basic retrieval demo answers questions, but a production workflow needs reporting, repeatability, and comparison. That is why this project saves benchmark summaries and comparison reports."}];
+        const detailQuestion = document.getElementById("detail-question");
+        const detailMetrics = document.getElementById("detail-metrics");
+        const detailReport = document.getElementById("detail-report");
+        const detailAnswer = document.getElementById("detail-answer");
+        const detailContext = document.getElementById("detail-context");
+        const contextBox = document.getElementById("context-box");
+        const openReport = document.getElementById("open-report");
+        const downloadReport = document.getElementById("download-report");
+        const runSearch = document.getElementById("run-search");
+        const exactToggle = document.getElementById("exact-toggle");
+        const contextToggle = document.getElementById("context-toggle");
+        const copyAnswer = document.getElementById("copy-answer");
+        const rows = document.querySelectorAll(".run-row");
+        let activeIndex = 0;
+
+        function renderDetail(run) {
+          detailQuestion.textContent = run.question || "";
+          detailAnswer.textContent = run.answer || "No answer saved.";
+          detailContext.textContent = run.retrieved_context || "No retrieved context saved.";
+          detailMetrics.innerHTML = [
+            ["Context precision", Number(run.context_precision || 0).toFixed(3)],
+            ["Answer relevancy", Number(run.answer_relevancy || 0).toFixed(3)],
+            ["Faithfulness", Number(run.faithfulness || 0).toFixed(3)],
+            ["Context recall", Number(run.context_recall || 0).toFixed(3)],
+            ["Reference similarity", Number(run.reference_similarity || 0).toFixed(3)]
+          ].map(([name, value]) => `
+            <div class="metric-pill">
+              <div class="metric-name">${name}</div>
+              <div class="metric-value">${value}</div>
+            </div>
+          `).join("");
+          detailReport.textContent = run.timestamp_utc ? `Timestamp: ${run.timestamp_utc}` : "";
+          if (openReport) {
+            openReport.href = run.report_href ? run.report_href : "#";
+            openReport.setAttribute("aria-disabled", run.report_href ? "false" : "true");
+            openReport.style.pointerEvents = run.report_href ? "auto" : "none";
+            openReport.style.opacity = run.report_href ? "1" : "0.55";
+          }
+          if (downloadReport) {
+            downloadReport.href = run.report_href ? run.report_href : "#";
+            downloadReport.setAttribute("aria-disabled", run.report_href ? "false" : "true");
+            downloadReport.style.pointerEvents = run.report_href ? "auto" : "none";
+            downloadReport.style.opacity = run.report_href ? "1" : "0.55";
+          }
+        }
+
+        function setActiveRow(index) {
+          activeIndex = index;
+          rows.forEach((row) => {
+            row.classList.toggle("active", Number(row.dataset.index) === index);
+          });
+        }
+
+        function applyFilter() {
+          const query = (runSearch.value || "").trim().toLowerCase();
+          const exact = exactToggle.checked;
+          rows.forEach((row) => {
+            const run = runs[Number(row.dataset.index)];
+            const question = (run && run.question) ? run.question.toLowerCase() : "";
+            const match = !query || (exact ? question === query : question.includes(query));
+            row.classList.toggle("hidden", !match);
+          });
+        }
+
+        rows.forEach((row) => {
+          row.addEventListener("click", () => {
+            const run = runs[Number(row.dataset.index)];
+            if (run) {
+              renderDetail(run);
+              setActiveRow(Number(row.dataset.index));
+            }
+          });
+        });
+
+        copyAnswer.addEventListener("click", async () => {
+          const text = detailAnswer.textContent || "";
+          if (!text) {
+            return;
+          }
+          try {
+            await navigator.clipboard.writeText(text);
+            copyAnswer.textContent = "Copied";
+            setTimeout(() => { copyAnswer.textContent = "Copy answer"; }, 1200);
+          } catch (error) {
+            copyAnswer.textContent = "Copy failed";
+            setTimeout(() => { copyAnswer.textContent = "Copy answer"; }, 1200);
+          }
+        });
+
+        runSearch.addEventListener("input", applyFilter);
+        exactToggle.addEventListener("change", applyFilter);
+        contextToggle.addEventListener("change", () => {
+          contextBox.style.display = contextToggle.checked ? "" : "none";
+        });
+
+        renderDetail(runs[0] || {"question": "What is this project about?", "answer": "This project is about turning a simple RAG demo into a measurable workflow for a production-style RAG system. It involves creating a production-style RAG system to answer questions from local files and includes features like reporting, repeatability, and comparison", "report_href": "report-pages/20260702T161524Z_What_is_this_project_about.html", "timestamp_utc": "2026-07-02T16:15:24.807833+00:00", "context_precision": 0.3159917862419553, "answer_relevancy": 0.19807692307692307, "faithfulness": 0.5, "context_recall": 0.03125, "reference_similarity": 0.0, "retrieved_context": "[Context 1]\nThis end-to-end flow is what turns a simple RAG demo into a measurable workflow.\n\n[Context 2]\nThis project is a production-style RAG system meant to answer questions from local files.\n\n[Context 3]\nA basic retrieval demo answers questions, but a production workflow needs reporting, repeatability, and comparison. That is why this project saves benchmark summaries and comparison reports."});
+        setActiveRow(0);
+        applyFilter();
+        contextToggle.dispatchEvent(new Event("change"));
+      </script>
+    </body>
+    </html>

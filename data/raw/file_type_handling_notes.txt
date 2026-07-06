@@ -1,0 +1,9 @@
+The pipeline should be able to deal with many file types without requiring the user to convert them first.
+
+Text and markdown files are simple, but they still benefit from clean paragraph or section splitting. PDFs need text extraction from pages. DOCX files need paragraph extraction. HTML files need scripts and styles removed before text extraction. CSV and XLSX files need row-aware normalization so tabular content does not become unreadable.
+
+The point of universal ingestion is not just compatibility. It is to preserve enough structure from each file type so that chunking and retrieval still work well after extraction.
+
+In practice, this means metadata matters. A chunk should know which file it came from, what kind of file it was, and sometimes extra information such as page counts, sheet names, or titles. That metadata is helpful when debugging retrieval and when showing sources to the user.
+
+This makes the pipeline more realistic because real project knowledge rarely lives in one file format. It lives in a mix of notes, docs, tables, code, and exported reports.

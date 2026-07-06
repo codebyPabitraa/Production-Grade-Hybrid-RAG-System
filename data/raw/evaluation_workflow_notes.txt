@@ -1,0 +1,9 @@
+The project is designed to move from prototype behavior to measurable behavior.
+
+A basic retrieval demo answers questions, but a production workflow needs reporting, repeatability, and comparison. That is why this project saves benchmark summaries and comparison reports.
+
+Benchmark questions should resemble the actual questions a developer or user would ask about the system. Examples include how ingestion works, which metrics are tracked, why retrieval uses hybrid ranking, and how the reports are used to track improvement.
+
+When scores are low, the first thing to inspect is the retrieved context. If the wrong chunks are being selected, the generation layer cannot recover. If the chunks are good but the answer is weak, then the prompt or model settings need adjustment.
+
+The benchmark history is useful because it lets the team see whether a change improved answer quality or only changed the wording. That is a more honest signal than looking at one output in isolation.

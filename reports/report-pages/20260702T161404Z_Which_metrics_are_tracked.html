@@ -1,0 +1,335 @@
+<!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Which metrics are tracked? - RAG Report</title>
+      <style>
+        :root {
+          color-scheme: dark;
+          --bg: #0e1117;
+          --panel: #151a23;
+          --text: #e6edf3;
+          --muted: #9aa4b2;
+          --accent: #37d67a;
+          --border: #243041;
+        }
+        body {
+          margin: 0;
+          font-family: Segoe UI, Arial, sans-serif;
+          background: radial-gradient(circle at top, #172033, var(--bg) 55%);
+          color: var(--text);
+        }
+        .wrap {
+          max-width: 1080px;
+          margin: 0 auto;
+          padding: 32px 20px 48px;
+        }
+        .panel {
+          background: linear-gradient(180deg, rgba(21,26,35,.95), rgba(16,21,29,.95));
+          border: 1px solid var(--border);
+          border-radius: 18px;
+          padding: 22px;
+          box-shadow: 0 18px 40px rgba(0,0,0,.25);
+        }
+        .hero-panel {
+          display: grid;
+          grid-template-columns: 1.6fr .9fr;
+          gap: 18px;
+          align-items: start;
+        }
+        h1 {
+          margin: 0 0 12px;
+          font-size: 30px;
+        }
+        h2 {
+          margin: 0 0 14px;
+          font-size: 18px;
+        }
+        p {
+          color: var(--muted);
+          line-height: 1.55;
+          white-space: pre-wrap;
+        }
+        .header {
+          display: flex;
+          justify-content: space-between;
+          gap: 16px;
+          align-items: start;
+          flex-wrap: wrap;
+        }
+        .nav {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin-top: 14px;
+        }
+        .nav a {
+          color: var(--muted);
+          text-decoration: none;
+          padding: 6px 10px;
+          border-radius: 999px;
+          border: 1px solid var(--border);
+          background: rgba(255,255,255,.02);
+          font-size: 12px;
+        }
+        .tag {
+          display: inline-block;
+          padding: 4px 10px;
+          border: 1px solid rgba(55,214,122,.35);
+          color: #8cf1b1;
+          border-radius: 999px;
+          font-size: 12px;
+          margin-bottom: 14px;
+        }
+        .metrics {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 12px;
+        }
+        .metric-card {
+          background: rgba(255,255,255,.03);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 14px;
+        }
+        .metric-name {
+          color: var(--muted);
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: .04em;
+        }
+        .metric-value {
+          margin-top: 6px;
+          font-size: 28px;
+          font-weight: 700;
+        }
+        .bar {
+          height: 8px;
+          background: rgba(255,255,255,.08);
+          border-radius: 999px;
+          overflow: hidden;
+          margin-top: 10px;
+        }
+        .bar span {
+          display: block;
+          height: 100%;
+          border-radius: inherit;
+          background: linear-gradient(90deg, var(--accent), #7af0a8);
+        }
+        .section {
+          margin-top: 18px;
+        }
+        .box {
+          background: rgba(255,255,255,.03);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 16px;
+        }
+        .meta {
+          color: var(--muted);
+          font-size: 13px;
+          margin-top: 8px;
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+        .context {
+          white-space: pre-wrap;
+          line-height: 1.6;
+          word-break: break-word;
+          font-size: 14px;
+        }
+        .actions {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin-top: 12px;
+        }
+        .button {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 9px 14px;
+          border-radius: 999px;
+          background: rgba(255,255,255,.05);
+          border: 1px solid var(--border);
+          color: var(--text);
+          text-decoration: none;
+        }
+        .button.primary {
+          background: rgba(55,214,122,.12);
+          border-color: rgba(55,214,122,.35);
+        }
+        .small {
+          color: var(--muted);
+          font-size: 13px;
+        }
+        .chips {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin-top: 16px;
+        }
+        .chip {
+          padding: 8px 10px;
+          border-radius: 999px;
+          border: 1px solid var(--border);
+          background: rgba(255,255,255,.03);
+          font-size: 12px;
+          color: var(--muted);
+        }
+        .hero-aside {
+          display: grid;
+          gap: 10px;
+        }
+        .hero-stat {
+          background: rgba(255,255,255,.03);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 14px;
+        }
+        .hero-stat .metric-name {
+          font-size: 11px;
+        }
+        .hero-stat .metric-value {
+          font-size: 24px;
+        }
+        .summary-strip {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 12px;
+          margin-top: 18px;
+        }
+        .summary-item {
+          background: rgba(255,255,255,.03);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 14px;
+        }
+        .summary-item .metric-name {
+          font-size: 11px;
+        }
+        .summary-item .metric-value {
+          font-size: 22px;
+        }
+        @media (max-width: 800px) {
+          .metrics {
+            grid-template-columns: 1fr;
+          }
+          .hero-panel {
+            grid-template-columns: 1fr;
+          }
+          .summary-strip {
+            grid-template-columns: 1fr;
+          }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="wrap">
+        <div class="tag">Run Report</div>
+        <div class="panel hero-panel">
+          <div class="header">
+            <div>
+              <h1>Which metrics are tracked?</h1>
+              <div class="small">A single benchmark run with answer, metrics, and retrieved context.</div>
+              <div class="chips">
+                <span class="chip">Answer quality</span>
+                <span class="chip">Retrieval evidence</span>
+                <span class="chip">Metric history</span>
+              </div>
+              <div class="nav">
+                <a href="#metrics">Metrics</a>
+                <a href="#answer">Answer</a>
+                <a href="#context">Retrieved context</a>
+              </div>
+              <div class="meta">2026-07-02T16:14:04.030768+00:00</div>
+            </div>
+            <div class="actions">
+              <a class="button" href="../benchmark_dashboard.html">Back to dashboard</a>
+              <a class="button primary" href="20260702T161404Z_Which_metrics_are_tracked.html" download>Download HTML</a>
+            </div>
+          </div>
+          <div class="hero-aside">
+            <div class="hero-stat">
+              <div class="metric-name">Question</div>
+              <div class="metric-value">Which metrics are tracked?</div>
+            </div>
+            <div class="hero-stat">
+              <div class="metric-name">Report file</div>
+              <div class="metric-value">20260702T161404Z_Which_metrics_are_tracked.html</div>
+            </div>
+          </div>
+        </div>
+        <div class="summary-strip">
+          <div class="summary-item">
+            <div class="metric-name">Answer preview</div>
+            <div class="metric-value">Per-question metrics, reference similarity, and ...</div>
+          </div>
+          <div class="summary-item">
+            <div class="metric-name">Retrieved sources</div>
+            <div class="metric-value">3</div>
+          </div>
+          <div class="summary-item">
+            <div class="metric-name">Top metric</div>
+            <div class="metric-value">Answer Relevancy</div>
+          </div>
+        </div>
+        <div class="section panel">
+          <h2 id="metrics">Metrics</h2>
+          <div class="metrics">
+        <div class="metric-card">
+          <div class="metric-name">Context Precision</div>
+          <div class="metric-value">0.2225</div>
+          <div class="bar"><span style="width:22.2%"></span></div>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-name">Answer Relevancy</div>
+          <div class="metric-value">0.2619</div>
+          <div class="bar"><span style="width:26.2%"></span></div>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-name">Faithfulness</div>
+          <div class="metric-value">0.2368</div>
+          <div class="bar"><span style="width:23.7%"></span></div>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-name">Context Recall</div>
+          <div class="metric-value">0.0274</div>
+          <div class="bar"><span style="width:2.7%"></span></div>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-name">Reference Similarity</div>
+          <div class="metric-value">0.0000</div>
+          <div class="bar"><span style="width:0.0%"></span></div>
+        </div>
+        </div>
+        </div>
+        <div class="section panel">
+          <h2 id="answer">Answer</h2>
+          <div class="box">
+            <div class="context">Per-question metrics, reference similarity, and aggregate averages are tracked. These metrics are recorded as part of the benchmark workflow, which compares multiple questions across saved reports.</div>
+          </div>
+        </div>
+        <div class="section panel">
+          <h2 id="context">Retrieved Context</h2>
+          <div class="box">
+            <div class="context">[Context 1]
+Benchmark questions should resemble the actual questions a developer or user would ask about the system. Examples include how ingestion works, which metrics are tracked, why retrieval uses hybrid ranking, and how the reports are used to track improvement.
+
+[Context 2]
+The benchmark workflow compares multiple questions across saved reports.
+It records per-question metrics, reference similarity, and aggregate averages.
+It also writes JSON and Markdown summaries so results are easier to inspect.
+
+[Context 3]
+When scores are low, the first thing to inspect is the retrieved context. If the wrong chunks are being selected, the generation layer cannot recover. If the chunks are good but the answer is weak, then the prompt or model settings need adjustment.</div>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>

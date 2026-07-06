@@ -1,0 +1,13 @@
+This project is a production-style RAG system meant to answer questions from local files.
+
+The ingestion layer is intentionally broad. It can read plain text, markdown, PDF, DOCX, HTML, CSV, XLSX, and code-like files so the same pipeline can work across many document sources.
+
+After ingestion, the chunking layer splits content in a format-aware way. Markdown is split by section structure, tables are split row by row, and other content is chunked into overlapping windows or paragraphs so retrieval has smaller pieces to rank.
+
+The retrieval layer is hybrid. BM25 helps when the question contains exact terms. Dense retrieval helps when the wording is different but the meaning is similar. Reciprocal rank fusion combines both sets, and the orchestrator keeps the interface consistent for generation and evaluation.
+
+The generation layer produces grounded answers from the retrieved chunks. In production-style use, the answer should stay close to the evidence, avoid inventing details, and summarize only what the retrieved context supports.
+
+The evaluation layer tracks whether the system is useful and measurable. It saves context precision, context recall, faithfulness, and answer relevancy so we can compare runs instead of guessing whether the changes helped.
+
+The reporting layer writes JSON and Markdown summaries. That makes it easier to inspect individual questions, compare benchmark runs, and keep a record of improvements over time.

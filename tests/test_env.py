@@ -12,3 +12,12 @@ def test_load_dotenv_reads_values(tmp_path: Path, monkeypatch):
 
     assert __import__("os").environ["GROQ_API_KEY"] == "test-value"
 
+
+def test_load_dotenv_overwrites_existing_values(tmp_path: Path, monkeypatch):
+    env_file = tmp_path / ".env"
+    env_file.write_text("ADMIN_PASSWORD=new-value\n", encoding="utf-8")
+    monkeypatch.setenv("ADMIN_PASSWORD", "old-value")
+
+    load_dotenv(env_file)
+
+    assert __import__("os").environ["ADMIN_PASSWORD"] == "new-value"

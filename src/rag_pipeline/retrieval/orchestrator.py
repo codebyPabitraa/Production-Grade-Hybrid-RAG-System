@@ -12,8 +12,14 @@ class RetrievalOrchestrator:
         self._bm25 = BM25Retriever(chunks)
         self._dense = DenseRetriever(chunks)
 
-    def search(self, query: RetrievalQuery) -> list[RetrievalResult]:
-        bm25_results = self._bm25.search(query)
-        dense_results = self._dense.search(query)
-        return reciprocal_rank_fusion([bm25_results, dense_results])[: query.top_k]
+    def search_components(self, query: RetrievalQuery) -> dict[str, list[RetrievalResult]]:
+        return {
+            "bm25": self._bm25.search(query),
+            "dense": self._dense.search(query),
+        }
 
+    def search(self, query: RetrievalQuery) -> list[RetrievalResult]:
+        components = self.search_components(query)
+        bm25_results = components["bm25"]
+        dense_results = components["dense"]
+        return reciprocal_rank_fusion([bm25_results, dense_results])[: query.top_k]

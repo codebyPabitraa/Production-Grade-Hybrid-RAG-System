@@ -1,0 +1,17 @@
+The main pieces of the system are ingestion, chunking, retrieval, generation, evaluation, and reporting.
+
+Ingestion is responsible for reading many file types and turning them into normalized text plus metadata.
+Chunking is responsible for splitting that normalized text into smaller units that are easier to retrieve.
+Retrieval is responsible for selecting the most relevant chunks for a question.
+Generation is responsible for turning the retrieved evidence into a grounded answer.
+Evaluation is responsible for scoring the answer and the retrieved context.
+Reporting is responsible for saving the run so the result can be compared later.
+
+The system is made measurable by saving per-question reports, benchmark summaries, and comparison reports.
+Those saved artifacts let us compare runs over time and see whether a change improved answer quality.
+
+The system handles different file types through format-aware ingestion and extraction.
+That means PDFs, DOCX files, HTML, CSV, XLSX, markdown, and code-like files can all enter the same pipeline without manual conversion.
+Metadata such as file path, kind, title, page count, row count, or sheet count helps preserve source context for debugging and tracing.
+
+This architecture is intended to be production-oriented because it separates responsibilities and keeps the evaluation loop visible.

@@ -40,7 +40,7 @@ def ingest_text_files(input_dir: Path) -> IngestionResult:
     documents: list[Document] = []
 
     for path in sorted(input_dir.rglob("*")):
-        if not path.is_file() or path.suffix.lower() not in SUPPORTED_EXTENSIONS:
+        if not path.is_file() or path.name.lower() == "manifest.json" or path.suffix.lower() not in SUPPORTED_EXTENSIONS:
             continue
         extracted = extract_text(path)
         text = extracted.text

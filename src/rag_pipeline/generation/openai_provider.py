@@ -28,7 +28,7 @@ class OpenAIProvider(AnswerProvider):
                 {"role": "user", "content": prompt.user_prompt},
             ],
             temperature=0.2,
-            max_tokens=220,
+            max_tokens=512,
         )
         message = response.choices[0].message.content or ""
         return message.strip()

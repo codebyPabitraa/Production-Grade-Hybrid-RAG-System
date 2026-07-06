@@ -4,8 +4,10 @@ import json
 from pathlib import Path
 from typing import Any
 
+from rag_pipeline.storage import reports_root
 
-def load_benchmark_runs(reports_dir: Path = Path("reports")) -> list[dict[str, Any]]:
+
+def load_benchmark_runs(reports_dir: Path = reports_root()) -> list[dict[str, Any]]:
     runs: list[dict[str, Any]] = []
     for path in sorted(reports_dir.glob("*_*.json"), key=lambda item: item.stat().st_mtime, reverse=True):
         if path.name in {"benchmark_comparison.json"}:
@@ -33,7 +35,7 @@ def load_benchmark_runs(reports_dir: Path = Path("reports")) -> list[dict[str, A
     return runs
 
 
-def build_history_index(reports_dir: Path = Path("reports"), output_path: Path | None = None) -> dict[str, Any]:
+def build_history_index(reports_dir: Path = reports_root(), output_path: Path | None = None) -> dict[str, Any]:
     runs = load_benchmark_runs(reports_dir)
     index = {
         "reports_dir": str(reports_dir),
@@ -101,7 +103,7 @@ def _build_markdown(index: dict[str, Any]) -> str:
     return "\n".join(lines).strip() + "\n"
 
 
-def load_latest_answer(reports_dir: Path = Path("reports")) -> dict[str, Any]:
+def load_latest_answer(reports_dir: Path = reports_root()) -> dict[str, Any]:
     latest_report = None
     for path in sorted(reports_dir.glob("*_*.json"), key=lambda item: item.stat().st_mtime, reverse=True):
         if path.name in {"benchmark_comparison.json"}:
@@ -118,7 +120,7 @@ def load_latest_answer(reports_dir: Path = Path("reports")) -> dict[str, Any]:
     return latest_report
 
 
-def load_latest_answers(reports_dir: Path = Path("reports"), limit: int = 5) -> list[dict[str, Any]]:
+def load_latest_answers(reports_dir: Path = reports_root(), limit: int = 5) -> list[dict[str, Any]]:
     latest_answers: list[dict[str, Any]] = []
     for path in sorted(reports_dir.glob("*_*.json"), key=lambda item: item.stat().st_mtime, reverse=True):
         if path.name in {"benchmark_comparison.json"}:
@@ -134,6 +136,6 @@ def load_latest_answers(reports_dir: Path = Path("reports"), limit: int = 5) -> 
     return latest_answers
 
 
-def latest_benchmark_history_table(reports_dir: Path = Path("reports"), limit: int = 10) -> str:
+def latest_benchmark_history_table(reports_dir: Path = reports_root(), limit: int = 10) -> str:
     index = build_history_index(reports_dir)
     return build_history_table(index, limit=limit)

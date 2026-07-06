@@ -32,14 +32,18 @@ def build_prompt(question: str, retrieved_context: list[RetrievalResult]) -> Pro
         "You are a precise RAG assistant. Use only the provided context. "
         "Synthesize the answer in clear prose. If the context is insufficient, say so clearly. "
         "Prefer direct factual statements, answer the question explicitly in the first sentence, "
-        "and reference the relevant context blocks. Keep answers concise: 2-4 sentences max."
+        "and reference the relevant context blocks. Keep answers helpful and explain the result briefly: "
+        "3-5 sentences is acceptable when needed. For definition-style questions, give the definition first, "
+        "then add a short practical explanation or consequence. Do not add filler or repetition."
     )
     user_prompt = (
         f"Question:\n{question}\n\n"
         f"Instructions:\n"
         f"- Answer the question directly in the first sentence.\n"
         f"- Use the question's key terms naturally in the answer.\n"
-        f"- Be concise but complete: 2-4 sentences max.\n"
+        f"- Be concise but complete: 3-5 sentences when needed.\n"
+        f"- Explain the reasoning or result briefly instead of only naming the answer.\n"
+        f"- If the question is asking for a definition, provide the definition and a short explanation.\n"
         f"- Mention uncertainty when the context does not support a claim.\n\n"
         "Context:\n"
         + "\n\n".join(context_blocks)

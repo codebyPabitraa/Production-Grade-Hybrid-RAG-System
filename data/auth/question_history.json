@@ -1,0 +1,28 @@
+[
+  {
+    "user_key": "pabitrachakraborty4u@gmail.com",
+    "username": "",
+    "email": "pabitrachakraborty4u@gmail.com",
+    "question": "What is the context of the file?",
+    "answer": "The context of the file is a System Operation Procedure (SOP) for Amazon ML School, detailing the development of an AI assistant robot and its RAG pipeline, which involves PDF ingestion, semantic chunking, and sentence-transformer embeddings. The SOP describes the author's experience in handling the pipeline, including challenges with chunking, retrieval, and model behavior, as well as their work on various projects such as a solar collector efficiency predictor, a generative AI tool called PromptCraft, and a research project on thermoacoustic instability in long ducts. The SOP also touches on",
+    "report_path": "reports\\app_runs\\20260703T180930Z_What_is_the_context_of_the_file.json",
+    "context_precision": 0.12844436757021344,
+    "answer_relevancy": 0.10367816091954021,
+    "faithfulness": 0.1836734693877551,
+    "context_recall": 0.005714285714285714,
+    "created_utc": 1783102170
+  },
+  {
+    "user_key": "pabitrachakraborty4u@gmail.com",
+    "username": "",
+    "email": "pabitrachakraborty4u@gmail.com",
+    "question": "what is hhv? explain in details",
+    "answer": "HHV stands for Higher Heating Value, which is the heat release including water droplet condensation. This value takes into account the energy released when water vapor in the flue gas condenses back into liquid water, resulting in a higher heat value compared to the Lower Heating Value (LHV). The LHV, on the other hand, is the heat release without water droplet condensation. The relationship between HHV and LHV is given by the equation LHV = HHV − (m × hfg), where m is the mass of water vapor and hfg is the latent heat of vaporization",
+    "report_path": "reports\\app_runs\\20260703T184427Z_what_is_hhv__explain_in_details.json",
+    "context_precision": 0.07023573474333554,
+    "answer_relevancy": 0.10731707317073172,
+    "faithfulness": 0.09941520467836257,
+    "context_recall": 0.006622516556291391,
+    "created_utc": 1783104267
+  }
+]

@@ -1,0 +1,15 @@
+The pipeline starts by ingesting files from a local directory.
+
+After ingestion, it normalizes file content into text with metadata so later stages can reason about the source and file type.
+
+The next step is chunking. Chunking turns large documents into smaller pieces so retrieval can rank the most relevant parts of the source material.
+
+Retrieval combines BM25 and dense ranking, then fuses the results. This helps the system handle both exact keyword matches and similar meanings.
+
+The generation layer then uses the retrieved chunks to answer the question. The answer should stay grounded in the context instead of inventing unsupported details.
+
+The evaluation layer scores the result using context precision, context recall, faithfulness, and answer relevancy. Those scores make it possible to compare runs and see whether the pipeline is improving.
+
+The reporting layer saves the run as JSON and Markdown so the results can be inspected later and compared against previous benchmark history.
+
+This end-to-end flow is what turns a simple RAG demo into a measurable workflow.

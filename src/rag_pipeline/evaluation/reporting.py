@@ -8,6 +8,7 @@ from typing import Any
 
 from rag_pipeline.evaluation.types import EvaluationResult
 from rag_pipeline.generation.types import GeneratedAnswer
+from rag_pipeline.storage import reports_root
 
 
 def _safe_name(value: str) -> str:
@@ -39,7 +40,7 @@ def build_evaluation_report(
     }
 
 
-def save_evaluation_report(report: dict[str, Any], output_dir: Path = Path("reports")) -> Path:
+def save_evaluation_report(report: dict[str, Any], output_dir: Path = reports_root()) -> Path:
     output_dir.mkdir(parents=True, exist_ok=True)
     question = report.get("question", "report")
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")

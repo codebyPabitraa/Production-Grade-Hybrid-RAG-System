@@ -1,0 +1,108 @@
+{
+  "timestamp_utc": "2026-07-03T18:44:27.737304+00:00",
+  "question": "what is hhv? explain in details",
+  "reference_answer": null,
+  "answer": "HHV stands for Higher Heating Value, which is the heat release including water droplet condensation. This value takes into account the energy released when water vapor in the flue gas condenses back into liquid water, resulting in a higher heat value compared to the Lower Heating Value (LHV). The LHV, on the other hand, is the heat release without water droplet condensation. The relationship between HHV and LHV is given by the equation LHV = HHV − (m × hfg), where m is the mass of water vapor and hfg is the latent heat of vaporization",
+  "generated": {
+    "question": "what is hhv? explain in details",
+    "answer": "HHV stands for Higher Heating Value, which is the heat release including water droplet condensation. This value takes into account the energy released when water vapor in the flue gas condenses back into liquid water, resulting in a higher heat value compared to the Lower Heating Value (LHV). The LHV, on the other hand, is the heat release without water droplet condensation. The relationship between HHV and LHV is given by the equation LHV = HHV − (m × hfg), where m is the mass of water vapor and hfg is the latent heat of vaporization",
+    "sources": [
+      {
+        "chunk": {
+          "chunk_id": "ECS_Fill_in_the_Blanks:12",
+          "doc_id": "ECS_Fill_in_the_Blanks",
+          "text": "Extraction Turbine (CET)\n■ Impulse & Reaction Turbines\n58. In Impulse Turbine, the enthalpy of steam is fully converted to __________ steam jet through\nnozzles before blades.\nAns: high velocity\n59. For Simple Impulse Turbine, the exit velocity is very high — about __________ of inlet velocity.\nAns: 33%\n60. In Pressure Compounding (Rateau Turbine), total pressure drop of steam occurs in successive\nrows of __________.\nAns: nozzles\n61. In Velocity Compounding (Curtis Turbine), the whole pressure drop occurs in a __________\nrow of nozzle.\nAns: single\n62. The function of Fixed Blades in a Curtis Turbine is only to change the __________ of the steam\ncoming out from MB1.\nAns: direction\n63. In Reaction Turbine, power is generated due to __________ force out of pressure drop inside\nthe moving part.",
+          "start": 6899,
+          "end": 7699,
+          "metadata": {
+            "path": "data\\uploads\\approved\\20260703T180950Z_f00497a9\\ECS_Fill_in_the_Blanks.pdf",
+            "extension": ".pdf",
+            "kind": "pdf",
+            "page_count": 6
+          }
+        },
+        "score": 0.032266458495966696,
+        "rank": 1,
+        "metadata": {
+          "strategy": "rrf"
+        }
+      },
+      {
+        "chunk": {
+          "chunk_id": "ECS_Fill_in_the_Blanks:4",
+          "doc_id": "ECS_Fill_in_the_Blanks",
+          "text": "possible __________ mixing with air.\nAns: better\n19. Excess air contributes to __________ gas loss as it carries heat away from the fuel to the\nchimney.\nAns: Exhaust\n20. The intersection point of decreasing incomplete combustion loss and increasing exhaust gas\nloss is called the __________ of the A/F ratio.\nAns: Operating Zone\n■ Calorific Value (HHV & LHV)\n21. The heat release including water droplet condensation is called the __________.\nAns: HHV — Higher Heating Value\n22. If the final exit of flue gas is without condensation of water vapour, the corresponding lower\nvalue is known as __________.\nAns: LHV — Lower Heating Value\n23. LHV = HHV − __________.\nAns: mw x hfg\n24. The dew point temperature is also called __________.\nAns: Acid-Condensation Temperature\n25. In power plants, the exit",
+          "start": 2208,
+          "end": 3008,
+          "metadata": {
+            "path": "data\\uploads\\approved\\20260703T180950Z_f00497a9\\ECS_Fill_in_the_Blanks.pdf",
+            "extension": ".pdf",
+            "kind": "pdf",
+            "page_count": 6
+          }
+        },
+        "score": 0.032266458495966696,
+        "rank": 2,
+        "metadata": {
+          "strategy": "rrf"
+        }
+      },
+      {
+        "chunk": {
+          "chunk_id": "ECS_Fill_in_the_Blanks:11",
+          "doc_id": "ECS_Fill_in_the_Blanks",
+          "text": "53. In turbines, steam does not get __________ with the lubricating oil as no lubricating oil is used\nin the steam space.\nAns: contaminated\n■ Classification of Steam Turbines\n54. On the basis of steam input, turbines may be __________ pressure or __________ pressure.\nAns: Single, Dual/Multi\n55. If the whole amount of steam from turbine goes to condenser, it is called __________ Turbine.\nAns: Condensing\n56. If whole steam passes through a process heater for utility heating, it is called __________\nTurbine.\nAns: Back Pressure\n57. If a small part of steam is extracted for process heating and the rest passes through\ncondenser, it is called __________ Turbine.\nAns: Condensing Extraction Turbine (CET)\n■ Impulse & Reaction Turbines\n58. In Impulse Turbine, the enthalpy of steam is fully converted",
+          "start": 6219,
+          "end": 7019,
+          "metadata": {
+            "path": "data\\uploads\\approved\\20260703T180950Z_f00497a9\\ECS_Fill_in_the_Blanks.pdf",
+            "extension": ".pdf",
+            "kind": "pdf",
+            "page_count": 6
+          }
+        },
+        "score": 0.016129032258064516,
+        "rank": 3,
+        "metadata": {
+          "strategy": "rrf"
+        }
+      }
+    ],
+    "metadata": {
+      "strategy": "groqprovider",
+      "prompt": {
+        "strategy": "prompt_template",
+        "context_count": 3
+      }
+    },
+    "prompt": {
+      "question": "what is hhv? explain in details",
+      "system_prompt": "You are a precise RAG assistant. Use only the provided context. Synthesize the answer in clear prose. If the context is insufficient, say so clearly. Prefer direct factual statements, answer the question explicitly in the first sentence, and reference the relevant context blocks. Keep answers helpful and explain the result briefly: 3-5 sentences is acceptable when needed. For definition-style questions, give the definition first, then add a short practical explanation or consequence. Do not add filler or repetition.",
+      "user_prompt": "Question:\nwhat is hhv? explain in details\n\nInstructions:\n- Answer the question directly in the first sentence.\n- Use the question's key terms naturally in the answer.\n- Be concise but complete: 3-5 sentences when needed.\n- Explain the reasoning or result briefly instead of only naming the answer.\n- If the question is asking for a definition, provide the definition and a short explanation.\n- Mention uncertainty when the context does not support a claim.\n\nContext:\n[Context 1] source=data\\uploads\\approved\\20260703T180950Z_f00497a9\\ECS_Fill_in_the_Blanks.pdf kind=pdf score=0.0323\nchunk_id=ECS_Fill_in_the_Blanks:12\nExtraction Turbine (CET)\n■ Impulse & Reaction Turbines\n58. In Impulse Turbine, the enthalpy of steam is fully converted to __________ steam jet through\nnozzles before blades.\nAns: high velocity\n59. For Simple Impulse Turbine, the exit velocity is very high — about __________ of inlet velocity.\nAns: 33%\n60. In Pressure Compounding (Rateau Turbine), total pressure drop of steam occurs in successive\nrows of __________.\nAns: nozzles\n61. In Velocity Compounding (Curtis Turbine), the whole pressure drop occurs in a __________\nrow of nozzle.\nAns: single\n62. The function of Fixed Blades in a Curtis Turbine is only to change the __________ of the steam\ncoming out from MB1.\nAns: direction\n63. In Reaction Turbine, power is generated due to __________ force out of pressure drop inside\nthe moving part.\n\n[Context 2] source=data\\uploads\\approved\\20260703T180950Z_f00497a9\\ECS_Fill_in_the_Blanks.pdf kind=pdf score=0.0323\nchunk_id=ECS_Fill_in_the_Blanks:4\npossible __________ mixing with air.\nAns: better\n19. Excess air contributes to __________ gas loss as it carries heat away from the fuel to the\nchimney.\nAns: Exhaust\n20. The intersection point of decreasing incomplete combustion loss and increasing exhaust gas\nloss is called the __________ of the A/F ratio.\nAns: Operating Zone\n■ Calorific Value (HHV & LHV)\n21. The heat release including water droplet condensation is called the __________.\nAns: HHV — Higher Heating Value\n22. If the final exit of flue gas is without condensation of water vapour, the corresponding lower\nvalue is known as __________.\nAns: LHV — Lower Heating Value\n23. LHV = HHV − __________.\nAns: mw x hfg\n24. The dew point temperature is also called __________.\nAns: Acid-Condensation Temperature\n25. In power plants, the exit\n\n[Context 3] source=data\\uploads\\approved\\20260703T180950Z_f00497a9\\ECS_Fill_in_the_Blanks.pdf kind=pdf score=0.0161\nchunk_id=ECS_Fill_in_the_Blanks:11\n53. In turbines, steam does not get __________ with the lubricating oil as no lubricating oil is used\nin the steam space.\nAns: contaminated\n■ Classification of Steam Turbines\n54. On the basis of steam input, turbines may be __________ pressure or __________ pressure.\nAns: Single, Dual/Multi\n55. If the whole amount of steam from turbine goes to condenser, it is called __________ Turbine.\nAns: Condensing\n56. If whole steam passes through a process heater for utility heating, it is called __________\nTurbine.\nAns: Back Pressure\n57. If a small part of steam is extracted for process heating and the rest passes through\ncondenser, it is called __________ Turbine.\nAns: Condensing Extraction Turbine (CET)\n■ Impulse & Reaction Turbines\n58. In Impulse Turbine, the enthalpy of steam is fully converted",
+      "context_blocks": [
+        "[Context 1] source=data\\uploads\\approved\\20260703T180950Z_f00497a9\\ECS_Fill_in_the_Blanks.pdf kind=pdf score=0.0323\nchunk_id=ECS_Fill_in_the_Blanks:12\nExtraction Turbine (CET)\n■ Impulse & Reaction Turbines\n58. In Impulse Turbine, the enthalpy of steam is fully converted to __________ steam jet through\nnozzles before blades.\nAns: high velocity\n59. For Simple Impulse Turbine, the exit velocity is very high — about __________ of inlet velocity.\nAns: 33%\n60. In Pressure Compounding (Rateau Turbine), total pressure drop of steam occurs in successive\nrows of __________.\nAns: nozzles\n61. In Velocity Compounding (Curtis Turbine), the whole pressure drop occurs in a __________\nrow of nozzle.\nAns: single\n62. The function of Fixed Blades in a Curtis Turbine is only to change the __________ of the steam\ncoming out from MB1.\nAns: direction\n63. In Reaction Turbine, power is generated due to __________ force out of pressure drop inside\nthe moving part.",
+        "[Context 2] source=data\\uploads\\approved\\20260703T180950Z_f00497a9\\ECS_Fill_in_the_Blanks.pdf kind=pdf score=0.0323\nchunk_id=ECS_Fill_in_the_Blanks:4\npossible __________ mixing with air.\nAns: better\n19. Excess air contributes to __________ gas loss as it carries heat away from the fuel to the\nchimney.\nAns: Exhaust\n20. The intersection point of decreasing incomplete combustion loss and increasing exhaust gas\nloss is called the __________ of the A/F ratio.\nAns: Operating Zone\n■ Calorific Value (HHV & LHV)\n21. The heat release including water droplet condensation is called the __________.\nAns: HHV — Higher Heating Value\n22. If the final exit of flue gas is without condensation of water vapour, the corresponding lower\nvalue is known as __________.\nAns: LHV — Lower Heating Value\n23. LHV = HHV − __________.\nAns: mw x hfg\n24. The dew point temperature is also called __________.\nAns: Acid-Condensation Temperature\n25. In power plants, the exit",
+        "[Context 3] source=data\\uploads\\approved\\20260703T180950Z_f00497a9\\ECS_Fill_in_the_Blanks.pdf kind=pdf score=0.0161\nchunk_id=ECS_Fill_in_the_Blanks:11\n53. In turbines, steam does not get __________ with the lubricating oil as no lubricating oil is used\nin the steam space.\nAns: contaminated\n■ Classification of Steam Turbines\n54. On the basis of steam input, turbines may be __________ pressure or __________ pressure.\nAns: Single, Dual/Multi\n55. If the whole amount of steam from turbine goes to condenser, it is called __________ Turbine.\nAns: Condensing\n56. If whole steam passes through a process heater for utility heating, it is called __________\nTurbine.\nAns: Back Pressure\n57. If a small part of steam is extracted for process heating and the rest passes through\ncondenser, it is called __________ Turbine.\nAns: Condensing Extraction Turbine (CET)\n■ Impulse & Reaction Turbines\n58. In Impulse Turbine, the enthalpy of steam is fully converted"
+      ],
+      "metadata": {
+        "strategy": "prompt_template",
+        "context_count": 3
+      }
+    }
+  },
+  "evaluation": {
+    "context_precision": 0.07023573474333554,
+    "answer_relevancy": 0.10731707317073172,
+    "faithfulness": 0.09941520467836257,
+    "context_recall": 0.006622516556291391,
+    "reference_similarity": 0.0,
+    "metadata": {
+      "strategy": "heuristic_overlap"
+    }
+  },
+  "summary": {
+    "documents": 2,
+    "chunks": 22,
+    "retrieval_results": 3
+  }
+}

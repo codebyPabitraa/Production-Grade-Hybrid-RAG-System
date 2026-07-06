@@ -1,164 +1,164 @@
 # Benchmark History
 
 - Reports dir: `reports`
-- Run count: `54`
+- Run count: `145`
+
+## What is this project about?
+- Report: `reports\20260702T161524Z_What_is_this_project_about.json`
+- Timestamp: `2026-07-02T16:15:24.807833+00:00`
+- Context precision: `0.3160`
+- Answer relevancy: `0.1981`
+- Faithfulness: `0.5000`
+- Context recall: `0.0312`
 
 ## How is the pipeline made measurable?
-- Report: `reports\20260629T064354Z_How_is_the_pipeline_made_measurable.json`
-- Timestamp: `2026-06-29T06:43:54.706229+00:00`
-- Context precision: `0.2263`
-- Answer relevancy: `0.0417`
-- Faithfulness: `0.4653`
-- Context recall: `0.0260`
+- Report: `reports\20260702T161408Z_How_is_the_pipeline_made_measurable.json`
+- Timestamp: `2026-07-02T16:14:08.493183+00:00`
+- Context precision: `0.2469`
+- Answer relevancy: `0.3622`
+- Faithfulness: `0.2857`
+- Context recall: `0.0448`
 
 ## What are the main pieces of the system?
-- Report: `reports\20260629T064353Z_What_are_the_main_pieces_of_the_system.json`
-- Timestamp: `2026-06-29T06:43:53.791895+00:00`
-- Context precision: `0.1498`
-- Answer relevancy: `0.0345`
-- Faithfulness: `0.2937`
-- Context recall: `0.0128`
+- Report: `reports\20260702T161407Z_What_are_the_main_pieces_of_the_system.json`
+- Timestamp: `2026-07-02T16:14:07.638998+00:00`
+- Context precision: `0.1479`
+- Answer relevancy: `0.3757`
+- Faithfulness: `0.2029`
+- Context recall: `0.0625`
 
 ## Why do we save benchmark reports?
-- Report: `reports\20260629T064352Z_Why_do_we_save_benchmark_reports.json`
-- Timestamp: `2026-06-29T06:43:52.584954+00:00`
-- Context precision: `0.3486`
-- Answer relevancy: `0.0909`
-- Faithfulness: `0.4259`
-- Context recall: `0.0408`
+- Report: `reports\20260702T161406Z_Why_do_we_save_benchmark_reports.json`
+- Timestamp: `2026-07-02T16:14:06.676586+00:00`
+- Context precision: `0.1420`
+- Answer relevancy: `0.3474`
+- Faithfulness: `0.2083`
+- Context recall: `0.0952`
 
 ## What makes the retrieval layer production-oriented?
-- Report: `reports\20260629T064351Z_What_makes_the_retrieval_layer_productio.json`
-- Timestamp: `2026-06-29T06:43:51.663785+00:00`
-- Context precision: `0.1563`
-- Answer relevancy: `0.0465`
-- Faithfulness: `0.2880`
-- Context recall: `0.0253`
+- Report: `reports\20260702T161405Z_What_makes_the_retrieval_layer_productio.json`
+- Timestamp: `2026-07-02T16:14:05.801932+00:00`
+- Context precision: `0.1751`
+- Answer relevancy: `0.3272`
+- Faithfulness: `0.2899`
+- Context recall: `0.0943`
 
 ## How does the system handle different file types?
-- Report: `reports\20260629T064350Z_How_does_the_system_handle_different_fil.json`
-- Timestamp: `2026-06-29T06:43:50.504446+00:00`
-- Context precision: `0.0599`
-- Answer relevancy: `0.1091`
-- Faithfulness: `0.0826`
-- Context recall: `0.0250`
+- Report: `reports\20260702T161404Z_How_does_the_system_handle_different_fil.json`
+- Timestamp: `2026-07-02T16:14:04.928447+00:00`
+- Context precision: `0.1821`
+- Answer relevancy: `0.3864`
+- Faithfulness: `0.3377`
+- Context recall: `0.0685`
 
 ## Which metrics are tracked?
-- Report: `reports\20260629T064349Z_Which_metrics_are_tracked.json`
-- Timestamp: `2026-06-29T06:43:49.512062+00:00`
-- Context precision: `0.5152`
-- Answer relevancy: `0.0417`
-- Faithfulness: `0.5152`
-- Context recall: `0.0357`
+- Report: `reports\20260702T161404Z_Which_metrics_are_tracked.json`
+- Timestamp: `2026-07-02T16:14:04.030768+00:00`
+- Context precision: `0.2225`
+- Answer relevancy: `0.2619`
+- Faithfulness: `0.2368`
+- Context recall: `0.0274`
 
 ## What does the pipeline do?
-- Report: `reports\20260629T064348Z_What_does_the_pipeline_do.json`
-- Timestamp: `2026-06-29T06:43:48.707927+00:00`
-- Context precision: `0.2210`
-- Answer relevancy: `0.0541`
-- Faithfulness: `0.2174`
-- Context recall: `0.0128`
+- Report: `reports\20260702T161403Z_What_does_the_pipeline_do.json`
+- Timestamp: `2026-07-02T16:14:03.009482+00:00`
+- Context precision: `0.1615`
+- Answer relevancy: `0.1871`
+- Faithfulness: `0.3250`
+- Context recall: `0.0857`
 
 ## What is this project about?
-- Report: `reports\20260629T064347Z_What_is_this_project_about.json`
-- Timestamp: `2026-06-29T06:43:47.818714+00:00`
-- Context precision: `0.4328`
-- Answer relevancy: `0.0179`
-- Faithfulness: `0.7258`
-- Context recall: `0.0189`
+- Report: `reports\20260702T161402Z_What_is_this_project_about.json`
+- Timestamp: `2026-07-02T16:14:02.105536+00:00`
+- Context precision: `0.3288`
+- Answer relevancy: `0.2097`
+- Faithfulness: `0.5405`
+- Context recall: `0.0312`
 
 ## What is this project about?
-- Report: `reports\20260629T063512Z_What_is_this_project_about.json`
-- Timestamp: `2026-06-29T06:35:12.185956+00:00`
-- Context precision: `0.4197`
-- Answer relevancy: `0.0189`
-- Faithfulness: `0.6774`
-- Context recall: `0.0189`
+- Report: `reports\20260702T161359Z_What_is_this_project_about.json`
+- Timestamp: `2026-07-02T16:13:59.442242+00:00`
+- Context precision: `0.3288`
+- Answer relevancy: `0.2089`
+- Faithfulness: `0.5676`
+- Context recall: `0.0312`
 
 ## How is the pipeline made measurable?
-- Report: `reports\20260629T062437Z_How_is_the_pipeline_made_measurable.json`
-- Timestamp: `2026-06-29T06:24:37.960437+00:00`
-- Context precision: `0.1616`
-- Answer relevancy: `0.0526`
-- Faithfulness: `0.2667`
-- Context recall: `0.0260`
+- Report: `reports\20260702T155859Z_How_is_the_pipeline_made_measurable.json`
+- Timestamp: `2026-07-02T15:58:59.762889+00:00`
+- Context precision: `0.2323`
+- Answer relevancy: `0.3591`
+- Faithfulness: `0.2778`
+- Context recall: `0.0448`
 
 ## What are the main pieces of the system?
-- Report: `reports\20260629T062436Z_What_are_the_main_pieces_of_the_system.json`
-- Timestamp: `2026-06-29T06:24:36.978049+00:00`
-- Context precision: `0.1861`
-- Answer relevancy: `0.0330`
-- Faithfulness: `0.4274`
-- Context recall: `0.0128`
+- Report: `reports\20260702T155858Z_What_are_the_main_pieces_of_the_system.json`
+- Timestamp: `2026-07-02T15:58:58.925904+00:00`
+- Context precision: `0.1518`
+- Answer relevancy: `0.3765`
+- Faithfulness: `0.2059`
+- Context recall: `0.0625`
 
 ## Why do we save benchmark reports?
-- Report: `reports\20260629T062435Z_Why_do_we_save_benchmark_reports.json`
-- Timestamp: `2026-06-29T06:24:35.666990+00:00`
-- Context precision: `0.3121`
-- Answer relevancy: `0.0938`
-- Faithfulness: `0.3818`
-- Context recall: `0.0408`
+- Report: `reports\20260702T155858Z_Why_do_we_save_benchmark_reports.json`
+- Timestamp: `2026-07-02T15:58:58.043052+00:00`
+- Context precision: `0.1693`
+- Answer relevancy: `0.3429`
+- Faithfulness: `0.2500`
+- Context recall: `0.0952`
 
 ## What makes the retrieval layer production-oriented?
-- Report: `reports\20260629T062434Z_What_makes_the_retrieval_layer_productio.json`
-- Timestamp: `2026-06-29T06:24:34.899031+00:00`
-- Context precision: `0.1755`
-- Answer relevancy: `0.0615`
-- Faithfulness: `0.2844`
-- Context recall: `0.0253`
-
-## How does the system handle different file types?
-- Report: `reports\20260629T062433Z_How_does_the_system_handle_different_fil.json`
-- Timestamp: `2026-06-29T06:24:33.772552+00:00`
-- Context precision: `0.0567`
-- Answer relevancy: `0.1224`
-- Faithfulness: `0.0965`
-- Context recall: `0.0250`
-
-## Which metrics are tracked?
-- Report: `reports\20260629T062432Z_Which_metrics_are_tracked.json`
-- Timestamp: `2026-06-29T06:24:32.558370+00:00`
-- Context precision: `0.5152`
-- Answer relevancy: `0.0417`
-- Faithfulness: `0.5152`
-- Context recall: `0.0357`
-
-## What does the pipeline do?
-- Report: `reports\20260629T062431Z_What_does_the_pipeline_do.json`
-- Timestamp: `2026-06-29T06:24:31.566513+00:00`
-- Context precision: `0.2210`
-- Answer relevancy: `0.0541`
-- Faithfulness: `0.2174`
-- Context recall: `0.0128`
-
-## What is this project about?
-- Report: `reports\20260629T062430Z_What_is_this_project_about.json`
-- Timestamp: `2026-06-29T06:24:30.508556+00:00`
-- Context precision: `0.3986`
-- Answer relevancy: `0.0179`
-- Faithfulness: `0.6462`
-- Context recall: `0.0189`
-
-## How is the pipeline made measurable?
-- Report: `reports\20260629T061848Z_How_is_the_pipeline_made_measurable.json`
-- Timestamp: `2026-06-29T06:18:48.949162+00:00`
-- Context precision: `0.1425`
-- Answer relevancy: `0.0517`
-- Faithfulness: `0.2407`
-- Context recall: `0.0260`
-
-## What are the main pieces of the system?
-- Report: `reports\20260629T061847Z_What_are_the_main_pieces_of_the_system.json`
-- Timestamp: `2026-06-29T06:18:47.999804+00:00`
-- Context precision: `0.1652`
-- Answer relevancy: `0.0357`
+- Report: `reports\20260702T155857Z_What_makes_the_retrieval_layer_productio.json`
+- Timestamp: `2026-07-02T15:58:57.199775+00:00`
+- Context precision: `0.2074`
+- Answer relevancy: `0.2667`
 - Faithfulness: `0.3333`
-- Context recall: `0.0128`
+- Context recall: `0.0943`
 
-## Why do we save benchmark reports?
-- Report: `reports\20260629T061846Z_Why_do_we_save_benchmark_reports.json`
-- Timestamp: `2026-06-29T06:18:46.662431+00:00`
-- Context precision: `0.3208`
-- Answer relevancy: `0.0968`
-- Faithfulness: `0.3889`
-- Context recall: `0.0408`
+## How does the system handle different file types?
+- Report: `reports\20260702T155856Z_How_does_the_system_handle_different_fil.json`
+- Timestamp: `2026-07-02T15:58:56.212981+00:00`
+- Context precision: `0.2084`
+- Answer relevancy: `0.3853`
+- Faithfulness: `0.3684`
+- Context recall: `0.0685`
+
+## Which metrics are tracked?
+- Report: `reports\20260702T155855Z_Which_metrics_are_tracked.json`
+- Timestamp: `2026-07-02T15:58:55.354442+00:00`
+- Context precision: `0.2167`
+- Answer relevancy: `0.2594`
+- Faithfulness: `0.2468`
+- Context recall: `0.0274`
+
+## What does the pipeline do?
+- Report: `reports\20260702T155854Z_What_does_the_pipeline_do.json`
+- Timestamp: `2026-07-02T15:58:54.349912+00:00`
+- Context precision: `0.2050`
+- Answer relevancy: `0.1180`
+- Faithfulness: `0.4419`
+- Context recall: `0.0857`
+
+## What is this project about?
+- Report: `reports\20260702T155853Z_What_is_this_project_about.json`
+- Timestamp: `2026-07-02T15:58:53.402018+00:00`
+- Context precision: `0.3288`
+- Answer relevancy: `0.2231`
+- Faithfulness: `0.5405`
+- Context recall: `0.0312`
+
+## What is this project about?
+- Report: `reports\20260702T155850Z_What_is_this_project_about.json`
+- Timestamp: `2026-07-02T15:58:50.140402+00:00`
+- Context precision: `0.2931`
+- Answer relevancy: `0.2023`
+- Faithfulness: `0.4324`
+- Context recall: `0.0312`
+
+## How is the pipeline made measurable?
+- Report: `reports\20260702T154839Z_How_is_the_pipeline_made_measurable.json`
+- Timestamp: `2026-07-02T15:48:39.618482+00:00`
+- Context precision: `0.2048`
+- Answer relevancy: `0.3564`
+- Faithfulness: `0.2533`
+- Context recall: `0.0448`

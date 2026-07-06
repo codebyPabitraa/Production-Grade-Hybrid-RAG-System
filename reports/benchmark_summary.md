@@ -5,102 +5,98 @@
 
 ## Aggregate Metrics
 
-- Avg context precision: `0.2357`
-- Avg answer relevancy: `0.2233`
-- Avg faithfulness: `0.2950`
-- Avg context recall: `0.0247`
-- Avg reference similarity: `0.2285`
+- Avg context precision: `0.2008`
+- Avg answer relevancy: `0.3072`
+- Avg faithfulness: `0.3034`
+- Avg context recall: `0.0637`
+- Avg reference similarity: `0.3027`
 
 ## Per Question
 
 ### What is this project about?
 
-This project is a production-style retrieval augmented generation (RAG) pipeline that supports various features for efficient and accurate generation. The pipeline includes universal file ingestion, format-aware chunking, hybrid retrieval, Groq generation, and evaluation reports, making it a comprehensive system. It leverages techniques such as hybrid retrieval, dense retrieval, and cross-encoder reranking to improve precision and semantic similarity.
+This project is about turning a simple RAG demo into a measurable production-style workflow. It involves creating a production-style RAG system that can answer questions from local files and save benchmark summaries and comparison reports.
 
-- Report: `reports\20260629T083338Z_What_is_this_project_about.json`
-- Context precision: `0.3343`
-- Answer relevancy: `0.1077`
-- Faithfulness: `0.4062`
-- Context recall: `0.0189`
-- Reference similarity: `0.3600`
+- Report: `reports\20260702T161402Z_What_is_this_project_about.json`
+- Context precision: `0.3288`
+- Answer relevancy: `0.2097`
+- Faithfulness: `0.5405`
+- Context recall: `0.0312`
+- Reference similarity: `0.2632`
 
 ### What does the pipeline do?
 
-The pipeline is a production-style retrieval augmented generation pipeline that supports various features. It enables universal file ingestion, format-aware chunking, hybrid retrieval, Groq generation, and evaluation reports, making it a comprehensive tool. The pipeline's design focuses on measurability and benchmarkability, allowing for the comparison of multiple questions across saved reports.
+The pipeline generates grounded answers from retrieved chunks. It does this by producing answers that stay close to the evidence, avoiding invented details, and summarizing only what the retrieved context supports .
 
-- Report: `reports\20260629T083339Z_What_does_the_pipeline_do.json`
-- Context precision: `0.2163`
-- Answer relevancy: `0.1250`
-- Faithfulness: `0.2360`
-- Context recall: `0.0128`
-- Reference similarity: `0.0417`
+- Report: `reports\20260702T161403Z_What_does_the_pipeline_do.json`
+- Context precision: `0.1615`
+- Answer relevancy: `0.1871`
+- Faithfulness: `0.3250`
+- Context recall: `0.0857`
+- Reference similarity: `0.2500`
 
 ### Which metrics are tracked?
 
-The metrics tracked by the benchmark workflow include per-question metrics and aggregate averages. These metrics are recorded alongside reference similarity. Additionally, the workflow writes JSON and Markdown summaries to facilitate easier inspection of results.
+Per-question metrics, reference similarity, and aggregate averages are tracked. These metrics are recorded as part of the benchmark workflow, which compares multiple questions across saved reports.
 
-- Report: `reports\20260629T083340Z_Which_metrics_are_tracked.json`
-- Context precision: `0.4857`
-- Answer relevancy: `0.2394`
-- Faithfulness: `0.4857`
-- Context recall: `0.0357`
-- Reference similarity: `0.1622`
+- Report: `reports\20260702T161404Z_Which_metrics_are_tracked.json`
+- Context precision: `0.2225`
+- Answer relevancy: `0.2619`
+- Faithfulness: `0.2368`
+- Context recall: `0.0274`
+- Reference similarity: `0.1818`
 
 ### How does the system handle different file types?
 
-The system handles different file types through universal file ingestion, which supports the ingestion of various file formats. This is mentioned in the project overview as a key feature of the production-style retrieval augmented generation pipeline. However, the context does not provide specific information on how the system handles different file types, so it is unclear what file formats are supported beyond the mention of universal file ingestion.
+The system handles different file types through format-aware ingestion and extraction. This is possible because the system can process various file formats, including PDFs, DOCX files, HTML, CSV, XLSX, markdown, and code-like files, without manual conversion.
 
-- Report: `reports\20260629T083341Z_How_does_the_system_handle_different_fil.json`
-- Context precision: `0.1199`
-- Answer relevancy: `0.3723`
-- Faithfulness: `0.1340`
-- Context recall: `0.0250`
-- Reference similarity: `0.2295`
+- Report: `reports\20260702T161404Z_How_does_the_system_handle_different_fil.json`
+- Context precision: `0.1821`
+- Answer relevancy: `0.3864`
+- Faithfulness: `0.3377`
+- Context recall: `0.0685`
+- Reference similarity: `0.5517`
 
 ### What makes the retrieval layer production-oriented?
 
-The retrieval layer in the production-oriented pipeline is production-oriented because it uses hybrid retrieval, which combines the strengths of dense retrieval and BM25 to capture both semantic similarity and lexical matches. This approach is mentioned in Context 2 as a key component of production RAG systems. The use of hybrid retrieval allows for a more comprehensive search of the knowledge base, improving the overall performance of the pipeline.
+The retrieval layer is production-oriented because it retrieves relevant evidence from the available chunks without inventing details, as stated in . This approach ensures that the generated answer stays close to the evidence and summarizes only what the retrieved context supports. The production-oriented nature of the retrieval layer is also implied in , which mentions the architecture's intention to keep the evaluation loop visible.
 
-- Report: `reports\20260629T083341Z_What_makes_the_retrieval_layer_productio.json`
-- Context precision: `0.1363`
-- Answer relevancy: `0.2540`
-- Faithfulness: `0.1735`
-- Context recall: `0.0253`
-- Reference similarity: `0.2642`
+- Report: `reports\20260702T161405Z_What_makes_the_retrieval_layer_productio.json`
+- Context precision: `0.1751`
+- Answer relevancy: `0.3272`
+- Faithfulness: `0.2899`
+- Context recall: `0.0943`
+- Reference similarity: `0.0400`
 
 ### Why do we save benchmark reports?
 
-We save benchmark reports to compare multiple questions across them, record per-question metrics, and generate summaries for easier inspection. This allows for the evaluation of the pipeline's performance and helps in making it more measurable and benchmarkable. The benchmark workflow records reference similarity and aggregate averages, making it easier to track progress and identify areas for improvement.
+We save benchmark reports to enable reporting, repeatability, and comparison in a production workflow. This allows us to track changes and improvements over time, as mentioned in .
 
-- Report: `reports\20260629T083342Z_Why_do_we_save_benchmark_reports.json`
-- Context precision: `0.2431`
-- Answer relevancy: `0.2220`
-- Faithfulness: `0.3492`
-- Context recall: `0.0408`
-- Reference similarity: `0.2963`
+- Report: `reports\20260702T161406Z_Why_do_we_save_benchmark_reports.json`
+- Context precision: `0.1420`
+- Answer relevancy: `0.3474`
+- Faithfulness: `0.2083`
+- Context recall: `0.0952`
+- Reference similarity: `0.3750`
 
 ### What are the main pieces of the system?
 
-The main pieces of the system include hybrid retrieval, dense retrieval, BM25, RRF fusion, cross-encoder reranking, and Groq generation. 
+The main pieces of the system are ingestion, chunking, retrieval, generation, evaluation, and reporting. These components work together to process and generate information, with chunking turning large documents into smaller pieces for retrieval, and evaluation assessing the quality of the retrieved and generated content. The system's architecture is described in , with the end-to-end flow outlined in and evaluation workflow details provided in .
 
-These components work together to support universal file ingestion, format-aware chunking, and the generation of evaluation reports. 
-
-The system also includes a benchmark workflow that compares questions across saved reports and records various metrics.
-
-- Report: `reports\20260629T083343Z_What_are_the_main_pieces_of_the_system.json`
-- Context precision: `0.2104`
-- Answer relevancy: `0.2320`
-- Faithfulness: `0.3605`
-- Context recall: `0.0128`
-- Reference similarity: `0.3077`
+- Report: `reports\20260702T161407Z_What_are_the_main_pieces_of_the_system.json`
+- Context precision: `0.1479`
+- Answer relevancy: `0.3757`
+- Faithfulness: `0.2029`
+- Context recall: `0.0625`
+- Reference similarity: `0.3478`
 
 ### How is the pipeline made measurable?
 
-The pipeline is made measurable through the use of benchmarking and evaluation tools, such as RAGAS, which helps prove the system's effectiveness. This is supported by Context 2, which mentions evaluation with RAGAS to prove the system is better. Additionally, Context 3 describes a benchmark workflow that records per-question metrics and aggregate averages, further enabling the pipeline's measurability.
+The pipeline is made measurable by saving per-question reports, benchmark summaries, and comparison reports. This is achieved by saving artifacts that allow for comparison of runs over time and evaluation of whether a change improved answer quality, as mentioned in .
 
-- Report: `reports\20260629T083344Z_How_is_the_pipeline_made_measurable.json`
-- Context precision: `0.1393`
-- Answer relevancy: `0.2343`
-- Faithfulness: `0.2151`
-- Context recall: `0.0260`
-- Reference similarity: `0.1667`
+- Report: `reports\20260702T161408Z_How_is_the_pipeline_made_measurable.json`
+- Context precision: `0.2469`
+- Answer relevancy: `0.3622`
+- Faithfulness: `0.2857`
+- Context recall: `0.0448`
+- Reference similarity: `0.4118`

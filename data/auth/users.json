@@ -1,0 +1,16 @@
+[
+  {
+    "username": "your-admin-name",
+    "email": "your-admin@email.com",
+    "password_hash": "sucHo2IEz0_kKGKT9V4sGA==$PfWNLMbR4qEQx9TTD4bZW20qd3XmlEFWF3ZfeUIPcv0=",
+    "role": "admin",
+    "verified": true
+  },
+  {
+    "username": "Pabitra10",
+    "email": "pabitrachakraborty4u@gmail.com",
+    "password_hash": "d5-0qV6j2Es-KFChEJ34YQ==$ogdB7bu-NgYTJQSQQa7aLmkvjEC97wSTJV_jbR0lLLI=",
+    "role": "admin",
+    "verified": true
+  }
+]

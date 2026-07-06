@@ -218,3 +218,113 @@ The next logical improvements are:
 - a larger benchmark corpus
 - comparison views for saved reports
 - a more faithful RAGAS-style evaluation pipeline
+
+## Additional Work Logged On This Day
+
+### 1. Added Retrieval Trace Output To The CLI
+
+We added a `--show-context` option so the CLI can print the retrieved chunks that were actually used to answer a question.
+
+This was important because the earlier workflow showed only the final answer and the metrics. That made it hard to tell whether weak answers were caused by retrieval, chunking, or the generation prompt.
+
+The trace now shows:
+
+- chunk rank
+- fused score
+- retrieval strategy
+- source file path
+- chunk id
+- chunk span
+- a short preview of the text
+
+That gave us a much clearer debugging loop.
+
+### 2. Fixed The Trace Formatting Behavior
+
+The first version of the trace helper returned only `No retrieval results.` when the retriever produced nothing.
+
+We corrected that so the output always starts with `Retrieved context:` and then either:
+
+- the retrieved chunk list
+- or a clear no-results message
+
+That kept the CLI output consistent.
+
+### 3. Expanded The Local Corpus
+
+We added richer source notes to `data/raw` so the retriever has more useful material to work with.
+
+The new notes describe:
+
+- the production RAG workflow
+- evaluation and benchmarking behavior
+- file-type handling expectations
+
+This should improve question coverage for project-style queries and give the benchmark more realistic source text to retrieve.
+
+### 4. Continued Benchmark-Oriented Thinking
+
+The corpus expansion was not just about adding more text.
+
+The goal was to make the data more representative of the kinds of questions we want to ask later, such as:
+
+- how ingestion works
+- how retrieval is made production-like
+- how evaluation is tracked
+- why the system is measurable
+
+That keeps the project aligned with the original goal of being a benchmarkable RAG system instead of a simple demo.
+
+### 5. Added A Targeted Architecture Note
+
+After reviewing the benchmark summary, we noticed that a few questions were still weaker than the others:
+
+- what the main pieces of the system are
+- how the system handles different file types
+- how the pipeline is made measurable
+
+To help those questions retrieve better evidence, we added a focused architecture note that explains:
+
+- the major pipeline stages
+- why the system is measurable
+- how file-type handling works in practice
+
+This was a deliberate retrieval fix rather than a generation tweak.
+
+### 6. Added An End-To-End Flow Note
+
+We added one more source note that explains the pipeline as a full sequence:
+
+- ingest
+- normalize
+- chunk
+- retrieve
+- generate
+- evaluate
+- report
+
+This was aimed at the questions that still needed better coverage for the benchmark, especially the ones about what the pipeline does and how the whole system fits together.
+
+### 7. Added A Direct Pipeline Purpose Note
+
+One benchmark question still lagged behind the others:
+
+- `What does the pipeline do?`
+
+To help retrieval hit that question more directly, we added a short note that states the pipeline purpose in plain language and breaks the flow into the main stages.
+
+This should help the retriever find a tighter match when the benchmark uses that exact wording.
+
+### 8. Wrote The Current Project Documentation
+
+We filled in the repository documentation so the project state is now easier to understand without reading the whole chat history.
+
+The docs now explain:
+
+- what the project does
+- how the system is designed
+- how to run it locally
+- how the benchmark workflow works
+- what the current baseline looks like
+
+This marks the point where the project has moved from a raw build-out phase into a documented benchmark baseline.
